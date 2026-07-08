@@ -41,8 +41,8 @@
 <body class="antialiased selection:bg-blue-500 selection:text-white relative">
  
     <!-- Chatbot Aç/Kapat (Minimize) Butonu - panel küçültüldüğünde görünür -->
-    <button id="chatMinimizedBar" class="hidden fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-blue-600 text-white shadow-xl rounded-full pl-2.5 pr-4 py-2.5 sm:pl-3 sm:pr-5 sm:py-3 items-center gap-2 hover:bg-blue-700">
-        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden shrink-0">
+    <button id="chatMinimizedBar" class="hidden fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-white text-slate-900 shadow-xl rounded-full pl-2 pr-4 py-2 sm:pl-2.5 sm:pr-5 sm:py-2.5 items-center gap-2.5 border border-slate-200 hover:shadow-2xl transition-shadow animate-bounce">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden shrink-0">
             <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="50" fill="#BFF0DD"/>
                 <path d="M0 100 C0 78 20 62 50 62 C80 62 100 78 100 100 Z" fill="#2563EB"/>
@@ -51,8 +51,13 @@
                 <path d="M50 60 C46 60 42 59 39 57 L39 62 C39 66 44 69 50 69 C56 69 61 66 61 62 L61 57 C58 59 54 60 50 60 Z" fill="#E3AD82"/>
             </svg>
         </div>
-        <span class="text-xs sm:text-sm font-semibold whitespace-nowrap">Bilgehan</span>
-        <span class="w-2 h-2 bg-green-400 rounded-full shrink-0"></span>
+        <div class="flex flex-col items-start leading-tight text-left">
+            <span class="flex items-center gap-1.5 text-xs sm:text-sm font-bold whitespace-nowrap">
+                Bilgehan
+                <span class="w-2 h-2 bg-green-400 rounded-full shrink-0"></span>
+            </span>
+            <span class="text-[11px] sm:text-xs text-slate-500 whitespace-nowrap">Bana mesaj at</span>
+        </div>
     </button>
  
         <!-- Chatbot Penceresi (varsayılan olarak açık, tıklamaya gerek yok) -->
@@ -888,12 +893,10 @@
         // Sayfa yüklenince panel açık başlasın (mesajlar hazırlansın)
         startConversation();
 
-        // Mobilde (768px altı) ekranı kaplamasın diye panel küçültülmüş başlasın
-        if (window.matchMedia('(max-width: 767px)').matches) {
-            chatWindow.classList.add('hidden-panel');
-            chatMinimizedBar.classList.remove('hidden');
-            chatMinimizedBar.classList.add('flex');
-        }
+        // Panel, sayfa içeriğinin üstüne binmesin diye her ekranda küçültülmüş başlasın
+        chatWindow.classList.add('hidden-panel');
+        chatMinimizedBar.classList.remove('hidden');
+        chatMinimizedBar.classList.add('flex');
     </script>
  
     <!-- Cloudflare Web Analytics (çerezsiz, ücretsiz ziyaretçi istatistiği) -->
