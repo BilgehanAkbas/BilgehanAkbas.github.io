@@ -41,8 +41,8 @@
 <body class="antialiased selection:bg-blue-500 selection:text-white relative">
  
     <!-- Chatbot Aç/Kapat (Minimize) Butonu - panel küçültüldüğünde görünür -->
-    <button id="chatMinimizedBar" class="hidden fixed bottom-6 right-6 z-50 bg-blue-600 text-white shadow-xl rounded-full pl-3 pr-5 py-3 items-center gap-2 hover:bg-blue-700">
-        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
+    <button id="chatMinimizedBar" class="hidden fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-blue-600 text-white shadow-xl rounded-full pl-2.5 pr-4 py-2.5 sm:pl-3 sm:pr-5 sm:py-3 items-center gap-2 hover:bg-blue-700">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden shrink-0">
             <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="50" fill="#BFF0DD"/>
                 <path d="M0 100 C0 78 20 62 50 62 C80 62 100 78 100 100 Z" fill="#2563EB"/>
@@ -51,15 +51,15 @@
                 <path d="M50 60 C46 60 42 59 39 57 L39 62 C39 66 44 69 50 69 C56 69 61 66 61 62 L61 57 C58 59 54 60 50 60 Z" fill="#E3AD82"/>
             </svg>
         </div>
-        <span class="text-sm font-semibold">Bilgehan</span>
-        <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+        <span class="text-xs sm:text-sm font-semibold whitespace-nowrap">Bilgehan</span>
+        <span class="w-2 h-2 bg-green-400 rounded-full shrink-0"></span>
     </button>
  
         <!-- Chatbot Penceresi (varsayılan olarak açık, tıklamaya gerek yok) -->
-    <div id="chatWindow" class="fixed z-50 bottom-6 right-6 w-[85vw] max-w-[280px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
+    <div id="chatWindow" class="fixed z-50 bottom-4 right-4 sm:bottom-6 sm:right-6 w-[78vw] max-w-[280px] sm:max-w-[300px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
         <div class="bg-blue-600 text-white px-4 py-3 flex items-center justify-between shrink-0">
             <div class="flex items-center gap-2.5">
-                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
+                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden shrink-0">
                     <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="50" cy="50" r="50" fill="#BFF0DD"/>
                         <path d="M0 100 C0 78 20 62 50 62 C80 62 100 78 100 100 Z" fill="#2563EB"/>
@@ -76,13 +76,13 @@
             <button id="chatMinimize" class="text-white/80 hover:text-white text-sm"><i class="fas fa-chevron-down"></i></button>
         </div>
 
-        <div id="chatMessages" class="chat-scroll flex-grow overflow-y-auto px-3 py-3 space-y-2.5 bg-slate-50 h-[300px] max-h-[50vh]"></div>
+        <div id="chatMessages" class="chat-scroll flex-grow overflow-y-auto px-3 py-3 space-y-2.5 bg-slate-50 h-[45vh] sm:h-[300px] max-h-[280px] sm:max-h-[50vh]"></div>
 
         <div id="chatQuickReplies" class="px-3 pb-2 flex flex-wrap gap-1.5 shrink-0 bg-slate-50"></div>
 
         <div class="border-t border-slate-200 p-2.5 flex items-center gap-2 shrink-0 bg-white">
             <input id="chatInput" type="text" placeholder="Bir soru sor..." class="flex-grow bg-slate-100 border border-slate-200 rounded-full px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <button id="sendChatBtn" class="w-9 h-9 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center">
+            <button id="sendChatBtn" class="w-9 h-9 shrink-0 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center">
                 <i class="fas fa-paper-plane text-xs"></i>
             </button>
         </div>
@@ -885,8 +885,15 @@
             chatMinimizedBar.classList.remove('flex');
         });
  
-        // Sayfa yüklenince panel zaten açık, karşılama mesajıyla başlasın
+        // Sayfa yüklenince panel açık başlasın (mesajlar hazırlansın)
         startConversation();
+
+        // Mobilde (768px altı) ekranı kaplamasın diye panel küçültülmüş başlasın
+        if (window.matchMedia('(max-width: 767px)').matches) {
+            chatWindow.classList.add('hidden-panel');
+            chatMinimizedBar.classList.remove('hidden');
+            chatMinimizedBar.classList.add('flex');
+        }
     </script>
  
     <!-- Cloudflare Web Analytics (çerezsiz, ücretsiz ziyaretçi istatistiği) -->
@@ -900,7 +907,5 @@
         }
         window.scrollTo(0, 0);
     </script>
-</body>
-</html>
 </body>
 </html>
