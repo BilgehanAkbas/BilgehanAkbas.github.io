@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobius Şeridi Satranç - Bilgehan Akbaş</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+    
+    <div class="max-w-4xl mx-auto px-4 py-10">
+        <a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold mb-8 transition-colors">
+            <i class="fas fa-arrow-left mr-2"></i> Portfolyoya Dön
+        </a>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 md:p-12">
+            <div class="flex items-center justify-between mb-2">
+                <h1 class="text-4xl font-extrabold text-slate-900">Mobius Şeridi Satranç</h1>
+                <span class="bg-amber-100 text-amber-800 border border-amber-300 text-xs font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider">Geliştirme Aşamasında</span>
+            </div>
+            <p class="text-slate-500 text-lg mb-8">Three.js & WebGL Oyun Motoru Projesi</p>
+
+            <div class="prose prose-slate max-w-none">
+                <p class="text-lg leading-relaxed mb-8">
+                    Satranç oynamayı sıradan ve düz bir tahtadan (Öklidyen düzlem) çıkararak, matematiksel bir topoloji olan <strong>Möbius Şeridi</strong> üzerine taşıyan inovatif bir oyun projesidir. 
+                </p>
+
+                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900"><i class="fas fa-chess-knight text-purple-600 mr-2"></i> Amacı ve Oynanış Farkı</h3>
+                <p class="text-slate-700 leading-relaxed mb-6">
+                    Möbius şeridi; tek bir yüzeye ve tek bir kenara sahip olan, üç boyutlu uzayda bükülmüş matematiksel bir nesnedir. Satranç tahtası bu şekilde bağlandığında, satranç taşlarının hareket sınırları ortadan kalkar. Klasik tahtada kenara ulaştığında durmak zorunda kalan bir kale veya vezir, Möbius şeridinde tahtanın altından / arka yüzünden dolanarak oyuncunun kendi bölgesine beklenmedik açılardan girebilir. Bu mekanik, oyunun bütün stratejik katmanını ve hamle jeneratörünü (Move Generator) sil baştan değiştirmektedir.
+                </p>
+
+                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900"><i class="fas fa-cubes text-blue-500 mr-2"></i> Teknolojik Altyapı</h3>
+                <ul class="space-y-3 mb-8 text-slate-700">
+                    <li><strong>Three.js & WebGL:</strong> Tarayıcı üzerinde çalışan yüksek performanslı 3 boyutlu oyun grafikleri, ışıklandırmaları ve kameraları kodlamak için kullanılmaktadır.</li>
+                    <li><strong>Gelişmiş Oyun Motoru Mantığı:</strong> Çapraz (Diagonal) ve düz hamlelerin tek bir yüzey üzerinde dairesel olarak nasıl sarılacağını (Wrap-around) hesaplayan karmaşık bir matematiksel koordinat sistemi tasarlanmaktadır.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

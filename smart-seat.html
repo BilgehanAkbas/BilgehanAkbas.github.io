@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart-Seat AI - Bilgehan Akbaş</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+    
+    <div class="max-w-4xl mx-auto px-4 py-10">
+        <a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold mb-8 transition-colors">
+            <i class="fas fa-arrow-left mr-2"></i> Portfolyoya Dön
+        </a>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 md:p-12">
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-2">Smart-Seat AI</h1>
+            <p class="text-slate-500 text-lg mb-8">Akıllı Kütüphane Takip Sistemi</p>
+
+            <div class="prose prose-slate max-w-none">
+                <p class="text-lg leading-relaxed mb-8">
+                    Kütüphanelerde boş masa bulmak, tüm katları dolaşmak zorunda kalan öğrenciler için büyük bir zaman kaybına yol açmaktadır[cite: 4]. Ayrıca eşya bırakılıp terk edilen masalar, gerçekte kullanılmadığı halde dolu görünerek büyük bir kapasite verimsizliği yaratmaktadır[cite: 4]. Smart-Seat AI, bu problemleri çözmek üzere geliştirdiğimiz donanım destekli akıllı bir görüntü işleme projesidir.
+                </p>
+
+                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900">Projenin Amacı ve Özellikleri</h3>
+                <ul class="space-y-3 mb-8 text-slate-700">
+                    <li><strong>Gerçek Zamanlı Analiz:</strong> Kamera tabanlı görüntü işleme sistemleri ile masa durumlarının anlık olarak tespit edilmesi[cite: 4].</li>
+                    <li><strong>Akıllı Sınıflandırma:</strong> Masalar yalnızca boş veya dolu olarak değil; eğer masada insan yok ancak eşya (kitap, çanta, laptop) tespit edilirse "Rezerve" (Dikkat) olarak kategorize edilir[cite: 4].</li>
+                    <li><strong>Kullanıcı Yönlendirme:</strong> Görsel arayüz üzerinden anlık doluluk haritası kullanıcıya sunularak zaman tasarrufu sağlanır[cite: 4].</li>
+                </ul>
+
+                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900">Teknik Mimari</h3>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h4 class="font-bold text-slate-800 mb-2">YOLOv8 & OpenCV</h4>
+                        <p class="text-sm text-slate-600">Görüntüyü hücrelere (grid) bölerek ve her hücrenin içinde insan veya nesne olup olmadığını analiz ederek[cite: 4], eş zamanlı, yüksek hızlı tespit yapan son teknoloji YOLOv8 nesne algılama motoru kullanılmıştır[cite: 4].</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h4 class="font-bold text-slate-800 mb-2">C# & SQLite3</h4>
+                        <p class="text-sm text-slate-600">Masa durumu verilerinin güvenli depolanması ve yönetimi SQLite3 ile sağlanırken, yönetim ve takip arayüzü C# .NET Framework ile oluşturulmuştur[cite: 4].</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900">Benim Rolüm</h3>
+                <p class="text-slate-700 leading-relaxed mb-8">
+                    <strong>Yapay Zeka ve Görüntü İşleme Geliştiricisi:</strong> Projenin çekirdek yapay zekâ entegrasyonlarını gerçekleştirdim. Ultralytics tarafından yayınlanan YOLOv8 modelinin projeye dâhil edilmesini, OpenCV ile analiz süreçlerinin başlatılmasını ve nesne-insan ayırt etme senaryolarındaki güven eşiği ayarlamalarını tasarladım.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilgehan Akbaş - Portfolyo</title>
+ 
+    <!-- Favicon (BA logolu, dosya gerektirmeyen SVG ikon) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial, sans-serif' font-weight='900' fill='white' text-anchor='middle'%3EBA%3C/text%3E%3C/svg%3E">
+ 
+    <!-- Open Graph / Sosyal Medya Link Önizleme Etiketleri -->
+    <meta property="og:title" content="Bilgehan Akbaş - Portfolyo">
+    <meta property="og:description" content="Gazi Üniversitesi Bilgisayar Mühendisliği öğrencisi. Siber güvenlik, yapay zeka ve gömülü sistemler üzerine projeler.">
+    <meta property="og:image" content="https://ui-avatars.com/api/?name=Bilgehan+Akbas&size=512&background=2563eb&color=fff&bold=true&format=png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bilgehan Akbaş - Portfolyo">
+    <meta name="twitter:description" content="Gazi Üniversitesi Bilgisayar Mühendisliği öğrencisi. Siber güvenlik, yapay zeka ve gömülü sistemler üzerine projeler.">
+    <meta name="twitter:image" content="https://ui-avatars.com/api/?name=Bilgehan+Akbas&size=512&background=2563eb&color=fff&bold=true&format=png">
+ 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #f8fafc; color: #334155; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; overflow-x: hidden; }
+        .text-gradient { background: linear-gradient(to right, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .typing-cursor { display: inline-block; margin-left: 2px; animation: blink 0.8s step-end infinite; color: #2563eb; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .skill-bar { transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1); }
+        #chatWindow { transition: opacity 0.25s ease, transform 0.25s ease; }
+        #chatWindow.hidden-panel { opacity: 0; transform: translateY(16px) scale(0.98); pointer-events: none; position: absolute; }
+        .typing-dot { animation: typingBounce 1.2s infinite; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
+        .chat-scroll::-webkit-scrollbar { width: 5px; }
+        .chat-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-500 selection:text-white relative">
+ 
+    <!-- Chatbot Aç/Kapat (Minimize) Butonu - panel küçültüldüğünde görünür -->
+    <button id="chatMinimizedBar" class="hidden fixed bottom-6 right-6 z-50 bg-blue-600 text-white shadow-xl rounded-full pl-3 pr-5 py-3 items-center gap-2 hover:bg-blue-700">
+        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
+            <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="50" fill="#BFF0DD"/>
+                <path d="M0 100 C0 78 20 62 50 62 C80 62 100 78 100 100 Z" fill="#2563EB"/>
+                <path d="M50 60 C35 60 26 48 26 34 C26 18 36 10 50 10 C64 10 74 18 74 34 C74 48 65 60 50 60 Z" fill="#F4C6A0"/>
+                <path d="M26 32 C26 16 36 8 50 8 C64 8 74 16 74 32 C74 26 70 22 64 21 C62 27 56 26 56 20 C50 27 40 24 38 18 C33 21 27 25 26 32 Z" fill="#2B2320"/>
+                <path d="M50 60 C46 60 42 59 39 57 L39 62 C39 66 44 69 50 69 C56 69 61 66 61 62 L61 57 C58 59 54 60 50 60 Z" fill="#E3AD82"/>
+            </svg>
+        </div>
+        <span class="text-sm font-semibold">Bilgehan</span>
+        <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+    </button>
+ 
+        <!-- Chatbot Penceresi (varsayılan olarak açık, tıklamaya gerek yok) -->
+    <div id="chatWindow" class="fixed z-50 bottom-6 right-6 w-[85vw] max-w-[300px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
+        <div class="bg-blue-600 text-white px-4 py-3 flex items-center justify-between shrink-0">
+            <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
+                    <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="50" fill="#BFF0DD"/>
+                        <path d="M0 100 C0 78 20 62 50 62 C80 62 100 78 100 100 Z" fill="#2563EB"/>
+                        <path d="M50 60 C35 60 26 48 26 34 C26 18 36 10 50 10 C64 10 74 18 74 34 C74 48 65 60 50 60 Z" fill="#F4C6A0"/>
+                        <path d="M26 32 C26 16 36 8 50 8 C64 8 74 16 74 32 C74 26 70 22 64 21 C62 27 56 26 56 20 C50 27 40 24 38 18 C33 21 27 25 26 32 Z" fill="#2B2320"/>
+                        <path d="M50 60 C46 60 42 59 39 57 L39 62 C39 66 44 69 50 69 C56 69 61 66 61 62 L61 57 C58 59 54 60 50 60 Z" fill="#E3AD82"/>
+                    </svg>
+                </div>
+                <div>
+                    <p class="font-bold leading-tight text-sm">Bilgehan Akbaş</p>
+                    <p class="text-xs text-blue-100 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full inline-block"></span> çevrimiçi</p>
+                </div>
+            </div>
+            <button id="chatMinimize" class="text-white/80 hover:text-white text-sm"><i class="fas fa-chevron-down"></i></button>
+        </div>
+
+        <div id="chatMessages" class="chat-scroll flex-grow overflow-y-auto px-3 py-3 space-y-2.5 bg-slate-50 h-[300px] max-h-[50vh]"></div>
+
+        <div id="chatQuickReplies" class="px-3 pb-2 flex flex-wrap gap-1.5 shrink-0 bg-slate-50"></div>
+
+        <div class="border-t border-slate-200 p-2.5 flex items-center gap-2 shrink-0 bg-white">
+            <input id="chatInput" type="text" placeholder="Bir soru sor..." class="flex-grow bg-slate-100 border border-slate-200 rounded-full px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button id="sendChatBtn" class="w-9 h-9 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center">
+                <i class="fas fa-paper-plane text-xs"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Chat gönderimini buton tıklamasıyla tetikle (Form yenilemesini engeller)
+        document.getElementById('sendChatBtn').addEventListener('click', () => {
+            sendMessage(document.getElementById('chatInput').value);
+        });
+        document.getElementById('chatInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage(document.getElementById('chatInput').value);
+            }
+        });
+    </script>
+ 
+    <!-- Navigasyon Çubuğu -->
+    <nav class="fixed w-full bg-white/80 backdrop-blur-md border-b border-slate-200 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black text-slate-900 tracking-tighter">B<span class="text-blue-600">A</span>.</a>
+ 
+            <!-- Masaüstü menü -->
+            <div class="space-x-6 hidden md:block text-base font-medium">
+                <a href="#hakkimda" class="text-slate-600 hover:text-blue-600 transition">Hakkımda</a>
+                <a href="#sertifikalar" class="text-slate-600 hover:text-blue-600 transition">Sertifikalar</a>
+                <a href="#deneyim" class="text-slate-600 hover:text-blue-600 transition">Kariyer & Eğitim</a>
+                <a href="#projeler" class="text-slate-600 hover:text-blue-600 transition">Projeler</a>
+                <a href="#iletisim" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 shadow-sm transition-all">Bana Ulaşın</a>
+            </div>
+ 
+            <!-- Mobil hamburger butonu -->
+            <button id="mobileMenuBtn" class="md:hidden text-slate-700 text-2xl" aria-label="Menüyü Aç/Kapat">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+ 
+        <!-- Mobil açılır menü -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-slate-200 px-4 py-4 space-y-3">
+            <a href="#hakkimda" class="block text-slate-700 font-medium py-2">Hakkımda</a>
+            <a href="#sertifikalar" class="block text-slate-700 font-medium py-2">Sertifikalar</a>
+            <a href="#deneyim" class="block text-slate-700 font-medium py-2">Kariyer & Eğitim</a>
+            <a href="#projeler" class="block text-slate-700 font-medium py-2">Projeler</a>
+            <a href="#iletisim" class="block bg-blue-600 text-white text-center py-3 rounded-full font-medium">Bana Ulaşın</a>
+        </div>
+    </nav>
+ 
+    <!-- Hero Bölümü -->
+    <section class="min-h-screen flex flex-col items-center justify-center px-4 relative text-center pt-16">
+        <div class="absolute top-20 right-20 w-[500px] h-[500px] bg-blue-100 rounded-full blur-3xl -z-10 opacity-50"></div>
+        <div class="absolute bottom-20 left-20 w-[500px] h-[500px] bg-purple-100 rounded-full blur-3xl -z-10 opacity-50"></div>
+ 
+        <div class="max-w-4xl" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="text-blue-600 font-semibold tracking-wider uppercase mb-4 text-base">Merhaba, Ben</h2>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight">Bilgehan Akbaş</h1>
+            <p class="text-2xl md:text-3xl text-blue-600 font-bold mb-4 min-h-[44px] flex items-center justify-center">
+                <span id="typedText"></span><span class="typing-cursor">|</span>
+            </p>
+            <p class="text-2xl md:text-3xl text-slate-600 mb-6 font-medium">
+                <span class="text-gradient">Gazi Üniversitesi 3. Sınıf Bilgisayar Mühendisliği Öğrencisi</span>
+            </p>
+            <p class="text-lg md:text-xl text-slate-700 mb-10 leading-relaxed mx-auto">
+                Yazılım ve donanımı bir arada düşünmeyi seviyorum. Bir yandan siber güvenlik ve ağ tarafına kafa yoruyorum, bir yandan da yapay zekâ ile görüntü işleme üzerine küçük projeler geliştiriyorum. Zaman zaman ESP32 ile de uğraşıp donanım tarafını da kaybetmemeye çalışıyorum. Kısacası öğrenmeyi seven, elimi kirletmekten çekinmeyen bir mühendislik öğrencisiyim.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-5">
+                <a href="https://linkedin.com/in/bilgehan-akbas" target="_blank" title="LinkedIn" class="flex items-center justify-center w-14 h-14 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300 shadow-sm">
+                    <i class="fab fa-linkedin-in text-2xl"></i>
+                </a>
+                <a href="https://github.com/BilgehanAkbas" target="_blank" title="GitHub" class="flex items-center justify-center w-14 h-14 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-800 hover:text-white hover:border-transparent transition-all duration-300 shadow-sm">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+                <a href="https://medium.com/@bilgehanakbas" target="_blank" title="Medium" class="flex items-center justify-center w-14 h-14 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-black hover:text-white hover:border-transparent transition-all duration-300 shadow-sm">
+                    <i class="fab fa-medium text-2xl"></i>
+                </a>
+                <a href="https://www.credly.com/users/bilgehan-akbas" target="_blank" title="Credly Rozetlerim" class="flex items-center justify-center w-14 h-14 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-orange-500 hover:text-white hover:border-transparent transition-all duration-300 shadow-sm">
+                    <i class="fas fa-certificate text-2xl"></i>
+                </a>
+                <a href="mailto:bilgehanakbas0@gmail.com" title="E-Posta Gönder" class="flex items-center justify-center w-14 h-14 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-red-500 hover:text-white hover:border-transparent transition-all duration-300 shadow-sm">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </a>
+            </div>
+ 
+            <div class="mt-8">
+                <a href="cv.pdf" download class="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-semibold hover:bg-slate-700 transition-all shadow-sm">
+                    <i class="fas fa-download"></i> CV İndir
+                </a>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Hakkımda ve Teknolojiler -->
+    <section id="hakkimda" class="py-20 bg-white px-4 border-t border-slate-200 relative overflow-hidden">
+        <div class="absolute -left-32 top-20 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute right-0 bottom-0 w-96 h-96 bg-indigo-50/30 rounded-full blur-3xl -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start relative z-10">
+            <div data-aos="fade-up">
+                <h3 class="text-3xl font-bold text-slate-900 mb-6">Hakkımda</h3>
+                <p class="text-slate-700 leading-relaxed mb-6 text-lg">
+                    Bilgisayar Mühendisliği 3. sınıf öğrencisi olarak akademik ve pratik serüvenime tüm hızımla devam ediyorum. Akbank Siber Güvenlik Analistliği eğitimimi başarıyla tamamlayıp defansif güvenlik bakış açımı sağlamlaştırdım. Aynı zamanda, okulumdaki Yapay Zekâ Topluluğu'nda Başkan Yardımcısı olarak harika bir ekiple beraber teknoloji odaklı etkinlikler koordine ediyorum.
+                </p>
+                <p class="text-slate-700 leading-relaxed text-lg">
+                    Bilgisayar başından kalktığımda beni yüksek ihtimalle kendi demlediğim kahvemi yudumlarken, fırlatma platformlarındaki son uzay teknolojilerini takip ederken veya taktiksel oyunların stratejilerini incelerken bulabilirsiniz. Gelecek hedefim ise bu teknik yetkinliğimi staj veya öğrenim hareketlilikleri ile Avrupa'ya taşıyarak vizyonumu küresel çapta genişletmek.
+                </p>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-3xl font-bold text-slate-900 mb-6">Yetenekler & Teknolojiler</h3>
+                <div class="bg-white/60 backdrop-blur-sm border border-slate-200 rounded-xl p-6 shadow-sm space-y-5">
+
+                    <div>
+                        <div class="flex justify-between items-center mb-1.5">
+                            <span class="flex items-center gap-2 font-semibold text-slate-800"><i class="fab fa-python text-blue-600 w-6 text-center"></i> Python</span>
+                            <span class="text-sm font-semibold text-slate-500">Orta</span>
+                        </div>
+                        <div class="w-full bg-slate-200 rounded-full h-2.5">
+                            <div class="skill-bar bg-blue-600 h-2.5 rounded-full" data-width="65" style="width:0%"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-1.5">
+                            <span class="flex items-center gap-2 font-semibold text-slate-800"><i class="fas fa-code text-purple-600 w-6 text-center"></i> C#</span>
+                            <span class="text-sm font-semibold text-slate-500">Orta</span>
+                        </div>
+                        <div class="w-full bg-slate-200 rounded-full h-2.5">
+                            <div class="skill-bar bg-purple-600 h-2.5 rounded-full" data-width="55" style="width:0%"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-1.5">
+                            <span class="flex items-center gap-2 font-semibold text-slate-800"><i class="fab fa-java text-red-500 w-6 text-center"></i> Java</span>
+                            <span class="text-sm font-semibold text-slate-500">Orta</span>
+                        </div>
+                        <div class="w-full bg-slate-200 rounded-full h-2.5">
+                            <div class="skill-bar bg-red-500 h-2.5 rounded-full" data-width="55" style="width:0%"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-1.5">
+                            <span class="flex items-center gap-2 font-semibold text-slate-800"><i class="fas fa-terminal text-slate-700 w-6 text-center"></i> C</span>
+                            <span class="text-sm font-semibold text-slate-500">Orta</span>
+                        </div>
+                        <div class="w-full bg-slate-200 rounded-full h-2.5">
+                            <div class="skill-bar bg-slate-700 h-2.5 rounded-full" data-width="55" style="width:0%"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-1.5">
+                            <span class="flex items-center gap-2 font-semibold text-slate-800"><i class="fas fa-network-wired text-blue-500 w-6 text-center"></i> Ağ Yönetimi</span>
+                            <span class="text-sm font-semibold text-slate-500">Orta</span>
+                        </div>
+                        <div class="w-full bg-slate-200 rounded-full h-2.5">
+                            <div class="skill-bar bg-blue-500 h-2.5 rounded-full" data-width="40" style="width:0%"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-1.5">
+                            <span class="flex items-center gap-2 font-semibold text-slate-800"><i class="fab fa-linux text-yellow-600 w-6 text-center"></i> Linux</span>
+                            <span class="text-sm font-semibold text-slate-500">Başlangıç</span>
+                        </div>
+                        <div class="w-full bg-slate-200 rounded-full h-2.5">
+                            <div class="skill-bar bg-yellow-600 h-2.5 rounded-full" data-width="27" style="width:0%"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-1.5">
+                            <span class="flex items-center gap-2 font-semibold text-slate-800"><i class="fas fa-microchip text-green-600 w-6 text-center"></i> ESP32</span>
+                            <span class="text-sm font-semibold text-slate-500">Başlangıç</span>
+                        </div>
+                        <div class="w-full bg-slate-200 rounded-full h-2.5">
+                            <div class="skill-bar bg-green-600 h-2.5 rounded-full" data-width="20" style="width:0%"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sertifikalar (İkili Izgara / Grid Düzeni) -->
+    <section id="sertifikalar" class="py-16 px-4 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3">Sertifikalar & Eğitimler</h3>
+                <p class="text-base text-slate-600">Tamamladığım profesyonel eğitim programları ve yetkinlik belgeleri.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-3.5">
+                
+                <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center gap-3" data-aos="fade-up" data-aos-delay="50">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0 bg-blue-50 rounded-md border border-blue-100">
+                        <i class="fas fa-shield-alt text-xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900 leading-tight">CyberOps Associate</h4>
+                        <p class="text-xs font-semibold text-blue-600 mt-1">Cisco</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center gap-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0 bg-blue-50 rounded-md border border-blue-100">
+                        <i class="fas fa-network-wired text-xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900 leading-tight">CCNA: Introduction to Networks</h4>
+                        <p class="text-xs font-semibold text-blue-600 mt-1">Cisco</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center gap-3" data-aos="fade-up" data-aos-delay="150">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0 bg-blue-50 rounded-md border border-blue-100">
+                        <i class="fas fa-lock text-xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900 leading-tight">Introduction to Cybersecurity</h4>
+                        <p class="text-xs font-semibold text-blue-600 mt-1">Cisco</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0 bg-blue-50 rounded-md border border-blue-100">
+                        <i class="fab fa-linux text-xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900 leading-tight">Linux Unhatched</h4>
+                        <p class="text-xs font-semibold text-blue-600 mt-1">Cisco</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center gap-3" data-aos="fade-up" data-aos-delay="250">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0 bg-slate-100 rounded-md border border-slate-200">
+                        <i class="fab fa-python text-xl text-slate-700"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900 leading-tight">Python Programlama Dili</h4>
+                        <p class="text-xs font-semibold text-slate-500 mt-1">BTK Akademi</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center gap-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0 bg-slate-100 rounded-md border border-slate-200">
+                        <i class="fas fa-brain text-xl text-slate-700"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900 leading-tight">Makine Öğrenmesi</h4>
+                        <p class="text-xs font-semibold text-slate-500 mt-1">BTK Akademi</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center gap-3" data-aos="fade-up" data-aos-delay="350">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0 bg-slate-100 rounded-md border border-slate-200">
+                        <i class="fas fa-robot text-xl text-slate-700"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900 leading-tight">Python ile Makine Öğrenmesi Uygulamaları</h4>
+                        <p class="text-xs font-semibold text-slate-500 mt-1">BTK Akademi</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center gap-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0 bg-slate-100 rounded-md border border-slate-200">
+                        <i class="fas fa-project-diagram text-xl text-slate-700"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900 leading-tight">Derin Öğrenmeye Giriş</h4>
+                        <p class="text-xs font-semibold text-slate-500 mt-1">BTK Akademi</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center gap-3" data-aos="fade-up" data-aos-delay="450">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0 bg-slate-100 rounded-md border border-slate-200">
+                        <i class="fas fa-user-secret text-xl text-slate-700"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900 leading-tight">Siber Güvenliğe Giriş</h4>
+                        <p class="text-xs font-semibold text-slate-500 mt-1">BTK Akademi</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center gap-3" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-12 h-12 flex items-center justify-center shrink-0 bg-green-50 rounded-md border border-green-100">
+                        <i class="fas fa-database text-xl text-green-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900 leading-tight">Bootcamp Fest'4: Data Science 101</h4>
+                        <p class="text-xs font-semibold text-green-600 mt-1">Techcareer.net</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+<!-- Kariyer, Gönüllülük ve Eğitim (İçerik Animasyonları Eklendi) -->
+    <section id="deneyim" class="py-20 px-4 bg-white border-t border-slate-200 relative overflow-hidden">
+        <div class="absolute -right-40 top-1/4 w-[600px] h-[600px] bg-purple-100/40 rounded-full blur-3xl -z-10"></div>
+        
+        <div class="max-w-5xl mx-auto relative z-10">
+            
+            <!-- 1. Deneyim -->
+            <div class="bg-white border border-slate-300 rounded-lg shadow-sm mb-12" data-aos="fade-up">
+                <div class="p-6 pb-2 border-b border-slate-100 mb-2">
+                    <h3 class="text-2xl font-bold text-slate-900">Deneyim</h3>
+                </div>
+
+                <div class="px-6 pb-6">
+                    <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="50">
+                        <div class="w-14 h-14 shrink-0"><img src="https://ui-avatars.com/api/?name=G&background=e0f2fe&color=0284c7&rounded=true&font-size=0.6" alt="Gazi Logo" class="w-full h-full object-cover"></div>
+                        <div class="flex-grow">
+                            <div class="flex items-center">
+                                <h4 class="text-lg font-bold text-slate-900 leading-tight">Gazi Üniversitesi Yapay Zekâ Topluluğu</h4>
+                                <a href="https://www.instagram.com/gaziyapayzeka/" target="_blank" title="Topluluk Instagram Sayfası" class="inline-flex items-center justify-center w-7 h-7 bg-gradient-to-tr from-purple-600 to-pink-500 text-white rounded-md hover:scale-110 hover:shadow-md transition-all ml-3">
+                                    <i class="fab fa-instagram text-sm"></i>
+                                </a>
+                            </div>
+                            <p class="text-base text-slate-700 mt-1">2 yıl 1 ay</p>
+                            <p class="text-base text-slate-500 mb-4">Ankara, Türkiye</p>
+
+                            <div class="relative border-l-2 border-slate-200 ml-2 mt-2 space-y-6 pb-1">
+                                <div class="relative pl-6">
+                                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 bg-slate-400 rounded-full border-4 border-white"></span>
+                                    <h5 class="text-base font-bold text-slate-900 leading-tight">Başkan Yardımcısı</h5>
+                                    <p class="text-base text-slate-500 mt-1">Ağu 2026 - Devam ediyor</p>
+                                </div>
+                                <div class="relative pl-6">
+                                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 bg-slate-400 rounded-full border-4 border-white"></span>
+                                    <h5 class="text-base font-bold text-slate-900 leading-tight">İletişim Komitesi Başkanı</h5>
+                                    <p class="text-base text-slate-500 mt-1">Ağu 2025 - Tem 2026 · 1 yıl</p>
+                                </div>
+                                <div class="relative pl-6">
+                                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 bg-slate-400 rounded-full border-4 border-white"></span>
+                                    <h5 class="text-base font-bold text-slate-900 leading-tight">İletişim Sorumlusu</h5>
+                                    <p class="text-base text-slate-500 mt-1">Ağu 2024 - Tem 2025 · 1 yıl</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="border-slate-200 my-2">
+                    <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="100">
+                        <div class="w-14 h-14 flex items-center justify-center shrink-0"><img src="https://ui-avatars.com/api/?name=Ak&background=fee2e2&color=dc2626&rounded=false&font-size=0.5" alt="Akbank" class="w-12 h-12 object-cover rounded-md"></div>
+                        <div class="flex-grow">
+                            <h4 class="text-lg font-bold text-slate-900 leading-tight">Siber Güvenlik Analisti Eğitim Programı</h4>
+                            <p class="text-base text-slate-800 mt-1">Akbank</p>
+                            <p class="text-base text-slate-500 mt-1">Şub 2026 - Haz 2026 · 5 ay</p>
+                        </div>
+                    </div>
+                    <hr class="border-slate-200 my-2">
+                    <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="150">
+                        <div class="w-14 h-14 flex items-center justify-center shrink-0"><img src="https://ui-avatars.com/api/?name=HÜ&background=f1f5f9&color=334155&rounded=false&font-size=0.4" alt="Hüma" class="w-12 h-12 object-cover rounded-md"></div>
+                        <div class="flex-grow">
+                            <h4 class="text-lg font-bold text-slate-900 leading-tight">Hüma UAV Software Team Member</h4>
+                            <p class="text-base text-slate-800 mt-1">Hüma Takımı · Serbest çalışan</p>
+                            <p class="text-base text-slate-500 mt-1">Ara 2024 - Ara 2025 · 1 yıl 1 ay</p>
+                        </div>
+                    </div>
+                    <hr class="border-slate-200 my-2">
+                    <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="200">
+                        <div class="w-14 h-14 flex items-center justify-center shrink-0"><img src="https://ui-avatars.com/api/?name=YZ&background=dbeafe&color=2563eb&rounded=false&font-size=0.4" alt="YZ" class="w-12 h-12 object-cover rounded-md"></div>
+                        <div class="flex-grow">
+                            <h4 class="text-lg font-bold text-slate-900 leading-tight">Yapay Zeka Uygulamaları Geliştirme</h4>
+                            <p class="text-base text-slate-800 mt-1">Yapay Zeka ve Teknoloji Akademisi</p>
+                            <p class="text-base text-slate-500 mt-1">Kas 2024 - Ağu 2025 · 10 ay</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Gönüllülük -->
+            <div class="bg-white border border-slate-300 rounded-lg shadow-sm mb-12" data-aos="fade-up">
+                <div class="p-6 pb-2 border-b border-slate-100 mb-2">
+                    <h3 class="text-2xl font-bold text-slate-900">Gönüllülük</h3>
+                </div>
+                <div class="px-6 pb-6">
+                    <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="50">
+                        <div class="w-14 h-14 shrink-0"><img src="https://ui-avatars.com/api/?name=K&background=fee2e2&color=dc2626&rounded=md&font-size=0.6" alt="Kızılay" class="w-12 h-12 object-cover rounded-md"></div>
+                        <div class="flex-grow">
+                            <h4 class="text-lg font-bold text-slate-900 leading-tight">Aktif Gönüllü</h4>
+                            <p class="text-base text-slate-800 mt-1">Kızılay</p>
+                            <p class="text-base text-slate-500 mt-1">2025 - Devam ediyor</p>
+                        </div>
+                    </div>
+                    <hr class="border-slate-200 my-2">
+                    <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="100">
+                        <div class="w-14 h-14 shrink-0"><img src="https://ui-avatars.com/api/?name=TOG&background=dcfce3&color=16a34a&rounded=md&font-size=0.4" alt="TOG" class="w-12 h-12 object-cover rounded-md"></div>
+                        <div class="flex-grow">
+                            <h4 class="text-lg font-bold text-slate-900 leading-tight">Aktif Gönüllü</h4>
+                            <p class="text-base text-slate-800 mt-1">TOG (Toplum Gönüllüleri Vakfı)</p>
+                            <p class="text-base text-slate-500 mt-1">2025 - Devam ediyor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Eğitim -->
+            <div class="bg-white border border-slate-300 rounded-lg shadow-sm mb-12" data-aos="fade-up">
+                <div class="p-6 pb-2 border-b border-slate-100 mb-2">
+                    <h3 class="text-2xl font-bold text-slate-900">Eğitim</h3>
+                </div>
+                <div class="px-6 pb-6">
+                    <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="50">
+                        <div class="w-14 h-14 shrink-0">
+                            <img src="https://ui-avatars.com/api/?name=GÜ&background=f3e8ff&color=9333ea&rounded=false&font-size=0.5" alt="Gazi Üniversitesi" class="w-12 h-12 object-cover rounded-md">
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-lg font-bold text-slate-900 leading-tight">Gazi Üniversitesi</h4>
+                            <p class="text-base text-slate-800 mt-1">Lisans Derecesi, Bilgisayar Mühendisliği</p>
+                            <p class="text-base text-slate-500 mt-1">Ekim 2023 - Haziran 2028</p>
+                            <p class="text-sm font-semibold text-blue-600 mt-1">Ortalama: 3.30 / 4.00</p>
+                        </div>
+                    </div>
+                    <hr class="border-slate-200 my-2">
+                    <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="100">
+                        <div class="w-14 h-14 shrink-0">
+                            <img src="https://ui-avatars.com/api/?name=75&background=fef3c7&color=d97706&rounded=false&font-size=0.5" alt="Lise" class="w-12 h-12 object-cover rounded-md">
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-lg font-bold text-slate-900 leading-tight">Muğla 75. Yıl Fen Lisesi</h4>
+                            <p class="text-base text-slate-800 mt-1">Lise Diploması</p>
+                            <p class="text-base text-slate-500 mt-1">Eylül 2019 - Haziran 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+     
+    <!-- Öne Çıkan Projeler -->
+    <section id="projeler" class="py-20 bg-slate-50 px-4 border-y border-slate-200 relative overflow-hidden">
+        <div class="absolute left-0 top-1/3 w-[500px] h-[500px] bg-blue-50/60 rounded-full blur-3xl -z-10 -translate-x-1/2"></div>
+        <div class="absolute right-0 bottom-10 w-[500px] h-[500px] bg-indigo-50/60 rounded-full blur-3xl -z-10 translate-x-1/3"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <h3 class="text-4xl font-bold text-slate-900 mb-12 text-center" data-aos="fade-up">Projeler</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <a href="smart-seat.html" class="group border border-slate-200 rounded-lg overflow-hidden flex flex-col hover:shadow-xl transition-all hover:-translate-y-1 bg-white cursor-pointer" data-aos="zoom-in">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=600" alt="Smart Library" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">Smart-Seat AI</h4>
+                        <p class="text-blue-600 font-semibold text-sm mb-3">Yapay Zeka Geliştiricisi</p>
+                        <p class="text-slate-700 text-base mb-6 flex-grow line-clamp-3">Kütüphane doluluk oranlarını otomatik bir şekilde takip etme yeteneğine sahip sistem.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-bold bg-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded">YOLOv8</span>
+                            <span class="text-xs font-bold bg-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded">OpenCV</span>
+                        </div>
+                    </div>
+                </a>
+ 
+                <a href="todo-project.html" class="group border border-slate-200 rounded-lg overflow-hidden flex flex-col hover:shadow-xl transition-all hover:-translate-y-1 bg-white cursor-pointer" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-green-900/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=600" alt="ToDo Project" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-green-600 transition-colors">ToDo Java Project</h4>
+                        <p class="text-green-600 font-semibold text-sm mb-3">Backend & Full-Stack</p>
+                        <p class="text-slate-700 text-base mb-6 flex-grow line-clamp-3">Görevlerin oluşturulabildiği, notların kaydedildiği ve sohbet yönetilen web uygulaması.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-bold bg-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded">Java</span>
+                            <span class="text-xs font-bold bg-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded">Spring Boot</span>
+                        </div>
+                    </div>
+                </a>
+ 
+                <a href="mobius-chess.html" class="group border border-slate-200 rounded-lg overflow-hidden flex flex-col hover:shadow-xl transition-all hover:-translate-y-1 bg-white cursor-pointer" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-md z-20 shadow-md">Geliştiriliyor</div>
+                        <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=600" alt="Mobius Chess" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">Mobius Şeridi Satranç</h4>
+                        <p class="text-purple-600 font-semibold text-sm mb-3">Oyun & WebGL Motoru</p>
+                        <p class="text-slate-700 text-base mb-6 flex-grow line-clamp-3">Non-Euclidean topolojiye sahip, standart kuralları tek yüzeyli bir uzaya taşıyan satranç varyantı.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-bold bg-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded">Three.js</span>
+                            <span class="text-xs font-bold bg-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded">WebGL</span>
+                        </div>
+                    </div>
+                </a>
+ 
+                <a href="esp32.html" class="group border border-slate-200 rounded-lg overflow-hidden flex flex-col hover:shadow-xl transition-all hover:-translate-y-1 bg-white cursor-pointer" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-md z-20 shadow-md">Geliştiriliyor</div>
+                        <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" alt="ESP32 Project" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors">Akıllı Sensör (ESP32)</h4>
+                        <p class="text-orange-600 font-semibold text-sm mb-3">Gömülü Sistemler & Donanım</p>
+                        <p class="text-slate-700 text-base mb-6 flex-grow line-clamp-3">ESP32-WROOM-32U modülü ve harici anten destekli uçtan uca ağ entegrasyonu projesi.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-bold bg-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded">C/C++</span>
+                            <span class="text-xs font-bold bg-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded">Hardware</span>
+                        </div>
+                    </div>
+                </a>
+ 
+            </div>
+         </div>
+    </section>
+ 
+    <!-- İletişim -->
+    <section id="iletisim" class="py-20 px-4 bg-white border-t border-slate-200 relative overflow-hidden">
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-50/50 rounded-full blur-3xl -z-10"></div>
+        
+        <div class="max-w-xl mx-auto bg-white/90 backdrop-blur-md p-8 rounded-xl border border-slate-200 shadow-sm relative z-10" data-aos="flip-up">
+            <div class="text-center mb-6">
+                <i class="fab fa-whatsapp text-4xl text-green-500 mb-3"></i>
+                <h3 class="text-2xl font-bold text-slate-900 mb-2">Bana Ulaşın</h3>
+                <p class="text-slate-600 text-base">Aşağıdaki formu kullanarak benimle doğrudan WhatsApp üzerinden iletişime geçebilirsiniz.</p>
+            </div>
+            
+            <form id="contactForm" class="space-y-4">
+                <div>
+                    <label class="block text-slate-700 font-semibold mb-1 text-sm">İsminiz</label>
+                    <input type="text" id="senderName" class="w-full bg-slate-50/50 border border-slate-300 rounded-md px-4 py-3 text-slate-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="Adınız Soyadınız" required>
+                </div>
+                <div>
+                    <label class="block text-slate-700 font-semibold mb-1 text-sm">Telefon Numaranız</label>
+                    <input type="tel" id="senderPhone" class="w-full bg-slate-50/50 border border-slate-300 rounded-md px-4 py-3 text-slate-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="05XX XXX XX XX" required>
+                </div>
+                <div>
+                    <label class="block text-slate-700 font-semibold mb-1 text-sm">Mesajınız</label>
+                    <textarea rows="4" id="senderMessage" class="w-full bg-slate-50/50 border border-slate-300 rounded-md px-4 py-3 text-slate-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none" placeholder="Merhaba..." required></textarea>
+                </div>
+                <button type="submit" id="contactSubmitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-4 rounded-md shadow-sm transition-all duration-200 flex justify-center items-center gap-2 text-base">
+                    <i class="fas fa-paper-plane"></i> Gönder
+                </button>
+                <p id="contactStatus" class="text-center text-sm mt-1"></p>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // İletişim Formu (WhatsApp Worker) Mantığı
+        const CONTACT_WORKER_URL = 'https://wp.bilgehanakbas0.workers.dev/';
+
+        const contactForm = document.getElementById('contactForm');
+        const contactSubmitBtn = document.getElementById('contactSubmitBtn');
+        const contactStatus = document.getElementById('contactStatus');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Sayfa yenilenmesini kesin olarak engeller
+
+            const name = document.getElementById('senderName').value.trim();
+            const phone = document.getElementById('senderPhone').value.trim();
+            const message = document.getElementById('senderMessage').value.trim();
+
+            if (!name || !phone || !message) {
+                contactStatus.textContent = 'Lütfen tüm alanları doldurun.';
+                contactStatus.className = 'text-center text-sm mt-1 text-red-600';
+                return;
+            }
+
+            contactSubmitBtn.disabled = true;
+            contactSubmitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+            contactStatus.textContent = 'Gönderiliyor...';
+            contactStatus.className = 'text-center text-sm mt-1 text-slate-500';
+
+            try {
+                const res = await fetch(CONTACT_WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, phone, message })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    contactStatus.textContent = 'Mesajınız iletildi, teşekkürler!';
+                    contactStatus.className = 'text-center text-sm mt-1 text-green-600';
+                    contactForm.reset();
+                } else if (data.error) {
+                    contactStatus.textContent = 'Hata: ' + data.error;
+                    contactStatus.className = 'text-center text-sm mt-1 text-red-600';
+                } else {
+                    contactStatus.textContent = 'Beklenmeyen bir yanıt alındı.';
+                    contactStatus.className = 'text-center text-sm mt-1 text-red-600';
+                }
+            } catch (err) {
+                contactStatus.textContent = 'Bağlantı hatası: ' + err.message;
+                contactStatus.className = 'text-center text-sm mt-1 text-red-600';
+                console.error(err);
+            } finally {
+                contactSubmitBtn.disabled = false;
+                contactSubmitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+            }
+        });
+    </script>
+ 
+    <!-- Footer -->
+    <footer class="py-10 text-center text-slate-500 text-base border-t border-slate-200 bg-white relative z-10">
+        <p>© 2026 Bilgehan Akbaş. Tüm hakları saklıdır.</p>
+    </footer>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ once: true, offset: 50 });</script>
+ 
+    <!-- Mobil hamburger menü aç/kapat -->
+    <script>
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+    </script>
+ 
+    <!-- Hero Daktilo (Typing) Efekti -->
+    <script>
+        const typingPhrases = [
+            'Siber Güvenlik Meraklısı',
+            'Yapay Zeka Geliştiricisi',
+            'Yazılım Geliştirici'
+        ];
+        const typedEl = document.getElementById('typedText');
+        let phraseIndex = 0, charIndex = 0, isDeleting = false;
+ 
+        function typeLoop() {
+            const currentPhrase = typingPhrases[phraseIndex];
+ 
+            if (isDeleting) {
+                charIndex--;
+            } else {
+                charIndex++;
+            }
+ 
+            typedEl.textContent = currentPhrase.substring(0, charIndex);
+ 
+            let delay = isDeleting ? 40 : 90;
+ 
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                delay = 1600;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % typingPhrases.length;
+                delay = 300;
+            }
+ 
+            setTimeout(typeLoop, delay);
+        }
+        typeLoop();
+    </script>
+ 
+    <!-- Yetenek Çubukları Animasyonu (görünür olunca dolsun) -->
+    <script>
+        const skillBars = document.querySelectorAll('.skill-bar');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.getAttribute('data-width') + '%';
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        skillBars.forEach(bar => skillObserver.observe(bar));
+    </script>
+ 
+    <!-- Chatbot (Bilgehan) Mantığı -->
+    <script>
+        const CHAT_WORKER_URL = 'https://kisiselai.bilgehanakbas0.workers.dev/';
+ 
+        const chatWindow = document.getElementById('chatWindow');
+        const chatMinimizedBar = document.getElementById('chatMinimizedBar');
+        const chatMinimize = document.getElementById('chatMinimize');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const chatQuickReplies = document.getElementById('chatQuickReplies');
+ 
+        let conversation = [];
+ 
+        const quickQuestions = [
+            "Bilgehan'ı Tanıyın",
+            'Portfolyo',
+            'Yetenekler',
+            'Deneyim',
+            'Sertifikalar'
+        ];
+ 
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+ 
+        function addMessage(role, text) {
+            const wrapper = document.createElement('div');
+            wrapper.className = role === 'user' ? 'flex justify-end' : 'flex justify-start';
+ 
+            const bubble = document.createElement('div');
+            bubble.className = role === 'user'
+                ? 'bg-blue-100 text-slate-900 rounded-2xl rounded-br-sm px-3.5 py-2 max-w-[85%] text-sm leading-relaxed'
+                : 'bg-white border border-slate-200 text-slate-800 rounded-2xl rounded-bl-sm px-3.5 py-2 max-w-[85%] text-sm leading-relaxed shadow-sm';
+            bubble.innerHTML = escapeHtml(text).replace(/\n/g, '<br>');
+ 
+            wrapper.appendChild(bubble);
+            chatMessages.appendChild(wrapper);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+ 
+        function showTyping() {
+            const wrapper = document.createElement('div');
+            wrapper.id = 'typingIndicator';
+            wrapper.className = 'flex justify-start';
+            wrapper.innerHTML = `
+                <div class="bg-white border border-slate-200 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1 shadow-sm">
+                    <span class="typing-dot w-2 h-2 bg-slate-400 rounded-full inline-block"></span>
+                    <span class="typing-dot w-2 h-2 bg-slate-400 rounded-full inline-block"></span>
+                    <span class="typing-dot w-2 h-2 bg-slate-400 rounded-full inline-block"></span>
+                </div>`;
+            chatMessages.appendChild(wrapper);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+ 
+        function removeTyping() {
+            const el = document.getElementById('typingIndicator');
+            if (el) el.remove();
+        }
+ 
+        function renderQuickReplies() {
+            chatQuickReplies.innerHTML = '';
+            quickQuestions.forEach(q => {
+                const btn = document.createElement('button');
+                btn.className = 'text-xs font-medium bg-white border border-slate-300 text-slate-700 px-2.5 py-1.5 rounded-full hover:bg-blue-50 hover:border-blue-300 transition';
+                btn.textContent = q;
+                btn.addEventListener('click', () => sendMessage(q));
+                chatQuickReplies.appendChild(btn);
+            });
+        }
+ 
+        function startConversation() {
+            conversation = [];
+            chatMessages.innerHTML = '';
+            addMessage('user', 'Merhaba!');
+            addMessage('assistant', "Ben Bilgehan, hakkımda neler öğrenmek istersin?");
+            renderQuickReplies();
+        }
+ 
+        async function sendMessage(text) {
+            if (!text.trim()) return;
+ 
+            addMessage('user', text);
+            conversation.push({ role: 'user', content: text });
+            chatInput.value = '';
+            chatQuickReplies.innerHTML = '';
+            showTyping();
+ 
+            try {
+                const res = await fetch(CHAT_WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: conversation })
+                });
+                const data = await res.json();
+                removeTyping();
+ 
+                if (data.reply) {
+                    addMessage('assistant', data.reply);
+                    conversation.push({ role: 'assistant', content: data.reply });
+                } else if (data.error) {
+                    // EĞER ARKA PLANDA BİR SORUN OLURSA EKRANA BASTIRACAK
+                    addMessage('assistant', 'Cloudflare Hatası: ' + data.error);
+                } else {
+                    addMessage('assistant', 'Bilinmeyen Hata: ' + JSON.stringify(data));
+                }
+            } catch (err) {
+                removeTyping();
+                addMessage('assistant', 'Frontend Hatası: ' + err.message);
+                console.error(err);
+            }
+        }
+ 
+        // Küçültme / genişletme
+        chatMinimize.addEventListener('click', () => {
+            chatWindow.classList.add('hidden-panel');
+            chatMinimizedBar.classList.remove('hidden');
+            chatMinimizedBar.classList.add('flex');
+        });
+ 
+        chatMinimizedBar.addEventListener('click', () => {
+            chatWindow.classList.remove('hidden-panel');
+            chatMinimizedBar.classList.add('hidden');
+            chatMinimizedBar.classList.remove('flex');
+        });
+ 
+        // Sayfa yüklenince panel zaten açık, karşılama mesajıyla başlasın
+        startConversation();
+    </script>
+ 
+    <!-- Cloudflare Web Analytics (çerezsiz, ücretsiz ziyaretçi istatistiği) -->
+    <!-- ÖNEMLİ: Aşağıdaki YOUR_TOKEN_HERE kısmını Cloudflare panelinden alacağın gerçek token ile değiştir -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5ea174841b52484ebcdd7504d5474a54"}'></script>
+ 
+    <script>
+        // Sayfa yenilendiğinde tarayıcının konumu hatırlamasını kapatır ve en başa atar
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>
+</body>
+</html>
+</body>
+</html>

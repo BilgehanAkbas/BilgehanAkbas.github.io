@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 Akıllı Sensör Ağı - Bilgehan Akbaş</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+    
+    <div class="max-w-4xl mx-auto px-4 py-10">
+        <a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold mb-8 transition-colors">
+            <i class="fas fa-arrow-left mr-2"></i> Portfolyoya Dön
+        </a>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 md:p-12">
+            <div class="flex items-center justify-between mb-2">
+                <h1 class="text-4xl font-extrabold text-slate-900">Akıllı Sensör Ağı (ESP32)</h1>
+                <span class="bg-amber-100 text-amber-800 border border-amber-300 text-xs font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider">Geliştirme Aşamasında</span>
+            </div>
+            <p class="text-slate-500 text-lg mb-8">Gömülü Sistemler ve Uçtan Uca Ağ Yönetimi Projesi</p>
+
+            <div class="prose prose-slate max-w-none">
+                <p class="text-lg leading-relaxed mb-8">
+                    Donanım seviyesinde veri okuma, işleme ve bu verileri ağ üzerinden merkezi sunuculara iletme süreçlerini kapsayan IoT (Nesnelerin İnterneti) tabanlı bir donanım projesidir.
+                </p>
+
+                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900"><i class="fas fa-microchip text-green-600 mr-2"></i> Projenin Amacı</h3>
+                <p class="text-slate-700 leading-relaxed mb-6">
+                    Temel amaç; fiziksel dünyadan alınan verileri (örneğin çevresel değişkenler) okuyup ağ katmanları üzerinden güvenli ve kayıpsız bir şekilde dijital ortama aktarabilen sağlam bir uç nokta (end-node) mimarisi kurmaktır. Sadece kod yazmakla kalmayıp, donanımın elektronik limitlerini, sinyal kalitesini ve ağ haberleşme protokollerini optimize etmeyi hedefler.
+                </p>
+
+                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900"><i class="fas fa-wifi text-blue-500 mr-2"></i> Donanım ve Kullanılan Teknolojiler</h3>
+                <ul class="space-y-3 mb-8 text-slate-700">
+                    <li><strong>ESP32-WROOM-32U Modülü:</strong> Güçlü işlemci kapasitesine sahip ana mikrodenetleyici birimi. Dahili Wi-Fi ve Bluetooth özellikleri ile ağ haberleşmesi için seçilmiştir.</li>
+                    <li><strong>Harici Anten Entegrasyonu:</strong> Standart PCB antenlerin yetersiz kaldığı uzak mesafeli haberleşmeler veya engelli ortamlar için u.FL konnektörlü harici anten mimarisi geliştirilmektedir.</li>
+                    <li><strong>Sensör Kalibrasyonları:</strong> Analog ve dijital verilerin ESP32 üzerinden C/C++ kullanılarak anlık işlenmesi ve filtrelenmesi.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
