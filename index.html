@@ -36,12 +36,14 @@
         @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
         .chat-scroll::-webkit-scrollbar { width: 5px; }
         .chat-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        @keyframes gentleBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        .gentle-bounce { animation: gentleBounce 2.6s ease-in-out infinite; }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-500 selection:text-white relative">
  
     <!-- Chatbot Aç/Kapat (Minimize) Butonu - panel küçültüldüğünde görünür -->
-    <button id="chatMinimizedBar" class="hidden fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-white text-slate-900 shadow-xl rounded-full pl-2 pr-4 py-2 sm:pl-2.5 sm:pr-5 sm:py-2.5 items-center gap-2.5 border border-slate-200 hover:shadow-2xl transition-shadow animate-bounce">
+    <button id="chatMinimizedBar" class="hidden fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-white text-slate-900 shadow-xl rounded-full pl-2 pr-4 py-2 sm:pl-2.5 sm:pr-5 sm:py-2.5 items-center gap-2.5 border border-slate-200 hover:shadow-2xl transition-shadow gentle-bounce">
         <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden shrink-0">
             <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="50" fill="#BFF0DD"/>
