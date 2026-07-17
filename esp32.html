@@ -1,44 +1,100 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESP32 Akıllı Sensör Ağı - Bilgehan Akbaş</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ESP32 Akıllı Sensör Ağı - Gömülü sistemler, C/C++ ve IoT tabanlı uçtan uca ağ entegrasyon projesi.">
+<meta name="author" content="Bilgehan Akbaş">
+<meta name="theme-color" content="#2563eb">
+<meta property="og:title" content="ESP32 Akıllı Sensör Ağı - Bilgehan Akbaş">
+<meta property="og:description" content="ESP32-WROOM-32U modülü ve harici anten destekli, C/C++ ile geliştirilen gömülü sistem projesi.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://bilgehanakbas.com/esp32.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial, sans-serif' font-weight='900' fill='white' text-anchor='middle'%3EBA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease; }
+.toggle-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #cbd5e1; background: #fff; color: #475569; cursor: pointer; transition: all 0.25s ease; font-size: 14px; font-weight: bold; }
+.toggle-btn:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+a:focus-visible, button:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; border-radius: 4px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+body.dark { background-color: #0f172a; color: #cbd5e1; }
+body.dark .bg-white { background-color: #1e293b !important; }
+body.dark .bg-slate-50 { background-color: #0f172a !important; }
+body.dark .text-slate-900 { color: #f1f5f9 !important; }
+body.dark .text-slate-800 { color: #e2e8f0 !important; }
+body.dark .text-slate-700 { color: #cbd5e1 !important; }
+body.dark .text-slate-600 { color: #94a3b8 !important; }
+body.dark .text-slate-500 { color: #64748b !important; }
+body.dark .border-slate-200 { border-color: #334155 !important; }
+body.dark .border-slate-100 { border-color: #334155 !important; }
+body.dark .bg-slate-50 { background-color: #1e293b !important; }
+body.dark .bg-amber-100 { background-color: #4a3510 !important; }
+body.dark .text-amber-800 { color: #fde68a !important; }
+body.dark .border-amber-300 { border-color: #92400e !important; }
+body.dark .toggle-btn { background: #1e293b; border-color: #475569; color: #cbd5e1; }
+body.dark .toggle-btn:hover { border-color: #3b82f6; color: #3b82f6; background: #1e3a5f; }
+body.dark .text-blue-800 { color: #60a5fa !important; }
+@media (max-width: 640px) { .page-container { padding-left: 12px; padding-right: 12px; padding-top: 1.5rem; padding-bottom: 1.5rem; } h1 { font-size: 1.75rem !important; } h2 { font-size: 1.25rem !important; } .status-badge { font-size: 0.65rem !important; padding: 4px 8px !important; } }
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
-    
-    <div class="max-w-4xl mx-auto px-4 py-10">
-        <a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold mb-8 transition-colors">
-            <i class="fas fa-arrow-left mr-2"></i> Portfolyoya Dön
-        </a>
+<body class="bg-slate-50 text-slate-800 antialiased">
+<script>(function(){var t=localStorage.getItem('theme');if(t==='dark'){document.body.classList.add('dark');}})();</script>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 md:p-12">
-            <div class="flex items-center justify-between mb-2">
-                <h1 class="text-4xl font-extrabold text-slate-900">Akıllı Sensör Ağı (ESP32)</h1>
-                <span class="bg-amber-100 text-amber-800 border border-amber-300 text-xs font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider">Geliştirme Aşamasında</span>
-            </div>
-            <p class="text-slate-500 text-lg mb-8">Gömülü Sistemler ve Uçtan Uca Ağ Yönetimi Projesi</p>
-
-            <div class="prose prose-slate max-w-none">
-                <p class="text-lg leading-relaxed mb-8">
-                    Donanım seviyesinde veri okuma, işleme ve bu verileri ağ üzerinden merkezi sunuculara iletme süreçlerini kapsayan IoT (Nesnelerin İnterneti) tabanlı bir donanım projesidir.
-                </p>
-
-                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900"><i class="fas fa-microchip text-green-600 mr-2"></i> Projenin Amacı</h3>
-                <p class="text-slate-700 leading-relaxed mb-6">
-                    Temel amaç; fiziksel dünyadan alınan verileri (örneğin çevresel değişkenler) okuyup ağ katmanları üzerinden güvenli ve kayıpsız bir şekilde dijital ortama aktarabilen sağlam bir uç nokta (end-node) mimarisi kurmaktır. Sadece kod yazmakla kalmayıp, donanımın elektronik limitlerini, sinyal kalitesini ve ağ haberleşme protokollerini optimize etmeyi hedefler.
-                </p>
-
-                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900"><i class="fas fa-wifi text-blue-500 mr-2"></i> Donanım ve Kullanılan Teknolojiler</h3>
-                <ul class="space-y-3 mb-8 text-slate-700">
-                    <li><strong>ESP32-WROOM-32U Modülü:</strong> Güçlü işlemci kapasitesine sahip ana mikrodenetleyici birimi. Dahili Wi-Fi ve Bluetooth özellikleri ile ağ haberleşmesi için seçilmiştir.</li>
-                    <li><strong>Harici Anten Entegrasyonu:</strong> Standart PCB antenlerin yetersiz kaldığı uzak mesafeli haberleşmeler veya engelli ortamlar için u.FL konnektörlü harici anten mimarisi geliştirilmektedir.</li>
-                    <li><strong>Sensör Kalibrasyonları:</strong> Analog ve dijital verilerin ESP32 üzerinden C/C++ kullanılarak anlık işlenmesi ve filtrelenmesi.</li>
-                </ul>
-            </div>
-        </div>
+<div class="max-w-4xl mx-auto px-4 py-6 sm:py-10 page-container">
+<div class="flex flex-wrap items-center justify-between mb-6 sm:mb-8 gap-4">
+    <a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition-colors text-sm sm:text-base">
+        <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> <span data-lang="back">Portfolyoya Dön</span>
+    </a>
+    <div class="flex items-center gap-2">
+        <button id="langToggle" class="toggle-btn" aria-label="Dil değiştir">TR</button>
+        <button id="themeToggle" class="toggle-btn" aria-label="Tema değiştir"><i class="fas fa-moon"></i></button>
     </div>
+</div>
+
+<div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-8 md:p-12">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 gap-3 sm:gap-4">
+    <div>
+        <h1 data-lang="title" class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-2">Akıllı Sensör Ağı (ESP32)</h1>
+        <p data-lang="subtitle" class="text-slate-500 text-base sm:text-lg">Gömülü Sistemler ve Uçtan Uca Ağ Yönetimi Projesi</p>
+    </div>
+    <span data-lang="status" class="bg-amber-100 text-amber-800 border border-amber-300 text-xs font-bold px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg uppercase tracking-wider status-badge">Geliştirme Aşamasında</span>
+</div>
+
+<p data-lang="intro" class="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">Donanım seviyesinde veri okuma, işleme ve bu verileri ağ üzerinden merkezi sunuculara iletme süreçlerini kapsayan IoT (Nesnelerin İnterneti) tabanlı bir donanım projesidir.</p>
+
+<h2 data-lang="purpose_title_text" class="text-xl sm:text-2xl font-bold border-b border-slate-200 pb-2 mb-3 sm:mb-4 text-slate-900">Projenin Amacı</h2>
+<p data-lang="purpose_text" class="text-slate-700 leading-relaxed text-sm sm:text-base mb-5 sm:mb-6">Temel amaç; fiziksel dünyadan alınan verileri (örneğin çevresel değişkenler) okuyup ağ katmanları üzerinden güvenli ve kayıpsız bir şekilde dijital ortama aktarabilen sağlam bir uç nokta (end-node) mimarisi kurmaktır. Sadece kod yazmakla kalmayıp, donanımın elektronik limitlerini, sinyal kalitesini ve ağ haberleşme protokollerini optimize etmeyi hedefler.</p>
+
+<h2 data-lang="tech_title_text" class="text-xl sm:text-2xl font-bold border-b border-slate-200 pb-2 mb-3 sm:mb-4 text-slate-900">Donanım ve Kullanılan Teknolojiler</h2>
+<ul class="space-y-2 sm:space-y-3 mb-6 text-slate-700 text-sm sm:text-base">
+<li><strong>ESP32-WROOM-32U Modülü:</strong> <span data-lang="tech_1">Güçlü işlemci kapasitesine sahip ana mikrodenetleyici birimi. Dahili Wi-Fi ve Bluetooth özellikleri ile ağ haberleşmesi için seçilmiştir.</span></li>
+<li><strong data-lang="tech_2_title">Harici Anten Entegrasyonu:</strong> <span data-lang="tech_2">Standart PCB antenlerin yetersiz kaldığı uzak mesafeli haberleşmeler veya engelli ortamlar için u.FL konnektörlü harici anten mimarisi geliştirilmektedir.</span></li>
+<li><strong data-lang="tech_3_title">Sensör Kalibrasyonları:</strong> <span data-lang="tech_3">Analog ve dijital verilerin ESP32 üzerinden C/C++ kullanılarak anlık işlenmesi ve filtrelenmesi.</span></li>
+</ul>
+</div>
+</div>
+
+<script>
+var LANG={tr:{back:"Portfolyoya Dön",title:"Akıllı Sensör Ağı (ESP32)",status:"Geliştirme Aşamasında",subtitle:"Gömülü Sistemler ve Uçtan Uca Ağ Yönetimi Projesi",intro:"Donanım seviyesinde veri okuma, işleme ve bu verileri ağ üzerinden merkezi sunuculara iletme süreçlerini kapsayan IoT (Nesnelerin İnterneti) tabanlı bir donanım projesidir.",purpose_title_text:"Projenin Amacı",purpose_text:"Temel amaç; fiziksel dünyadan alınan verileri (örneğin çevresel değişkenler) okuyup ağ katmanları üzerinden güvenli ve kayıpsız bir şekilde dijital ortama aktarabilen sağlam bir uç nokta (end-node) mimarisi kurmaktır. Sadece kod yazmakla kalmayıp, donanımın elektronik limitlerini, sinyal kalitesini ve ağ haberleşme protokollerini optimize etmeyi hedefler.",tech_title_text:"Donanım ve Kullanılan Teknolojiler",tech_1:"Güçlü işlemci kapasitesine sahip ana mikrodenetleyici birimi. Dahili Wi-Fi ve Bluetooth özellikleri ile ağ haberleşmesi için seçilmiştir.",tech_2_title:"Harici Anten Entegrasyonu:",tech_2:"Standart PCB antenlerin yetersiz kaldığı uzak mesafeli haberleşmeler veya engelli ortamlar için u.FL konnektörlü harici anten mimarisi geliştirilmektedir.",tech_3_title:"Sensör Kalibrasyonları:",tech_3:"Analog ve dijital verilerin ESP32 üzerinden C/C++ kullanılarak anlık işlenmesi ve filtrelenmesi."},en:{back:"Back to Portfolio",title:"Smart Sensor Network (ESP32)",status:"In Development",subtitle:"Embedded Systems and End-to-End Network Management Project",intro:"An IoT (Internet of Things) based hardware project that covers data reading, processing at the hardware level, and transmitting this data to central servers over the network.",purpose_title_text:"Project Purpose",purpose_text:"The main goal is to build a robust end-node architecture that can read data from the physical world (e.g. environmental variables) and transmit it securely and losslessly to the digital environment over network layers. It aims not just to write code but to optimize the hardware's electronic limits, signal quality, and network communication protocols.",tech_title_text:"Hardware and Technologies Used",tech_1:"The main microcontroller unit with powerful processing capacity. Selected for network communication with built-in Wi-Fi and Bluetooth features.",tech_2_title:"External Antenna Integration:",tech_2:"An external antenna architecture with u.FL connector is being developed for long-distance communications or obstructed environments where standard PCB antennas are insufficient.",tech_3_title:"Sensor Calibrations:",tech_3:"Real-time processing and filtering of analog and digital data using C/C++ on the ESP32."}};
+var currentLang=localStorage.getItem('lang')||'tr';
+function applyLang(lang){currentLang=lang;localStorage.setItem('lang',lang);document.documentElement.lang=lang==='tr'?'tr':'en';document.title=lang==='tr'?'ESP32 Akıllı Sensör Ağı - Bilgehan Akbaş':'ESP32 Smart Sensor Network - Bilgehan Akbaş';document.getElementById('langToggle').textContent=lang==='tr'?'TR':'EN';document.querySelectorAll('[data-lang]').forEach(function(el){var k=el.getAttribute('data-lang');if(LANG[lang]&&LANG[lang][k]){if(LANG[lang][k].includes('<strong>'))el.innerHTML=LANG[lang][k];else el.textContent=LANG[lang][k];}});}
+document.getElementById('langToggle').addEventListener('click',function(){applyLang(currentLang==='tr'?'en':'tr');});
+function applyTheme(isDark){
+    if(isDark){
+        document.body.classList.add('dark');
+        document.getElementById('themeToggle').innerHTML='<i class="fas fa-sun"></i>';
+    }else{
+        document.body.classList.remove('dark');
+        document.getElementById('themeToggle').innerHTML='<i class="fas fa-moon"></i>';
+    }
+    localStorage.setItem('theme',isDark?'dark':'light');
+}
+if(localStorage.getItem('theme')==='dark')applyTheme(true);
+document.getElementById('themeToggle').addEventListener('click',function(){applyTheme(!document.body.classList.contains('dark'));});
+applyLang(currentLang);
+</script>
 </body>
 </html>
