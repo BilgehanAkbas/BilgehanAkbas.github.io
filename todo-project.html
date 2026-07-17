@@ -1,53 +1,113 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo Java Project - Bilgehan Akbaş</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ToDo Java Project - Spring Boot, Java, MySQL tabanlı full-stack görev yönetim uygulaması.">
+<meta name="author" content="Bilgehan Akbaş">
+<meta name="theme-color" content="#2563eb">
+<meta property="og:title" content="ToDo Java Project - Bilgehan Akbaş">
+<meta property="og:description" content="Görevlerin oluşturulabildiği, notların kaydedildiği ve sohbet yönetilen web uygulaması.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://bilgehanakbas.com/todo-project.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial, sans-serif' font-weight='900' fill='white' text-anchor='middle'%3EBA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease; }
+.toggle-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #cbd5e1; background: #fff; color: #475569; cursor: pointer; transition: all 0.25s ease; font-size: 14px; font-weight: bold; }
+.toggle-btn:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+a:focus-visible, button:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; border-radius: 4px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+body.dark { background-color: #0f172a; color: #cbd5e1; }
+body.dark .bg-white { background-color: #1e293b !important; }
+body.dark .bg-slate-50 { background-color: #0f172a !important; }
+body.dark .text-slate-900 { color: #f1f5f9 !important; }
+body.dark .text-slate-800 { color: #e2e8f0 !important; }
+body.dark .text-slate-700 { color: #cbd5e1 !important; }
+body.dark .text-slate-600 { color: #94a3b8 !important; }
+body.dark .text-slate-500 { color: #64748b !important; }
+body.dark .border-slate-200 { border-color: #334155 !important; }
+body.dark .border-slate-100 { border-color: #334155 !important; }
+body.dark .bg-slate-50 { background-color: #1e293b !important; }
+body.dark .bg-slate-100 { background-color: #1e293b !important; }
+body.dark .bg-blue-50 { background-color: #1e3a5f !important; }
+body.dark .border-blue-200 { border-color: #1e40af !important; }
+body.dark .bg-green-50 { background-color: #14532d !important; }
+body.dark .border-green-200 { border-color: #15803d !important; }
+body.dark .bg-indigo-50 { background-color: #2a1e5f !important; }
+body.dark .border-indigo-200 { border-color: #3b2e8f !important; }
+body.dark .toggle-btn { background: #1e293b; border-color: #475569; color: #cbd5e1; }
+body.dark .toggle-btn:hover { border-color: #3b82f6; color: #3b82f6; background: #1e3a5f; }
+body.dark .text-blue-800 { color: #60a5fa !important; }
+@media (max-width: 640px) { .page-container { padding-left: 12px; padding-right: 12px; padding-top: 1.5rem; padding-bottom: 1.5rem; } h1 { font-size: 1.75rem !important; } h2 { font-size: 1.25rem !important; } }
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
-    
-    <div class="max-w-4xl mx-auto px-4 py-10">
-        <a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold mb-8 transition-colors">
-            <i class="fas fa-arrow-left mr-2"></i> Portfolyoya Dön
-        </a>
+<body class="bg-slate-50 text-slate-800 antialiased">
+<script>(function(){var t=localStorage.getItem('theme');if(t==='dark'){document.body.classList.add('dark');}})();</script>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 md:p-12">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-                <div>
-                    <h1 class="text-4xl font-extrabold text-slate-900 mb-2">ToDo Java Project</h1>
-                    <p class="text-slate-500 text-lg">1. Sınıf OOP Dersi Projesi</p>
-                </div>
-                <a href="https://github.com/Bilgehankbs/ToDoList" target="_blank" class="inline-flex items-center bg-slate-900 text-white px-5 py-2.5 rounded-lg hover:bg-slate-800 transition-colors font-medium">
-                    <i class="fab fa-github text-xl mr-2"></i> GitHub'da İncele
-                </a>
-            </div>
-
-            <div class="prose prose-slate max-w-none">
-                <p class="text-lg leading-relaxed mb-8">
-                    Bu sistem, sınıf arkadaşlarımla birlikte Nesne Yönelimli Programlama (OOP) yeteneklerimizi pratik bir ürüne dönüştürmek amacıyla geliştirdiğimiz bir Java web uygulamasıdır[cite: 3]. Kullanıcıların görevlerini ve notlarını yönetebildiği, sohbet edebildiği güvenli bir altyapı üzerine kurulmuştur[cite: 3].
-                </p>
-
-                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900"><i class="fas fa-rocket text-blue-500 mr-2"></i> Temel Özellikler</h3>
-                <ul class="space-y-3 mb-8 text-slate-700">
-                    <li><strong>Kullanıcı Yönetimi:</strong> Kayıt, giriş ve dinamik profil ayarları[cite: 3].</li>
-                    <li><strong>Görev Sistemi:</strong> Notları ve görevleri oluşturma, düzenleme, silme ve saklama işlemleri[cite: 3].</li>
-                    <li><strong>İletişim:</strong> Ayrı not ve görev sekmeleri barındıran bireysel ve grup sohbetleri[cite: 3].</li>
-                    <li><strong>Modern Arayüz:</strong> Bootstrap 5 ve JavaScript kullanılarak hazırlanan gradient tasarımlı duyarlı UI[cite: 3].</li>
-                    <li><strong>Gelişmiş Güvenlik:</strong> Tüm veriler BCrypt ile şifrelenir, Spring Security kullanılarak XSS/CSRF koruması ve form doğrulama işlemleri sağlanır[cite: 3].</li>
-                </ul>
-
-                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900"><i class="fas fa-tools text-purple-500 mr-2"></i> Teknolojiler & Mimari</h3>
-                <div class="flex flex-wrap gap-2 mb-8">
-                    <span class="bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-md">Java[cite: 3]</span>
-                    <span class="bg-green-50 text-green-700 border border-green-200 px-3 py-1 rounded-md">Spring Boot[cite: 3]</span>
-                    <span class="bg-indigo-50 text-indigo-700 border border-indigo-200 px-3 py-1 rounded-md">MySQL[cite: 3]</span>
-                    <span class="bg-slate-100 text-slate-700 border border-slate-300 px-3 py-1 rounded-md">Spring Security & BCrypt[cite: 3]</span>
-                </div>
-            </div>
-        </div>
+<div class="max-w-4xl mx-auto px-4 py-6 sm:py-10 page-container">
+<div class="flex flex-wrap items-center justify-between mb-6 sm:mb-8 gap-4">
+    <a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition-colors text-sm sm:text-base">
+        <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> <span data-lang="back">Portfolyoya Dön</span>
+    </a>
+    <div class="flex items-center gap-2">
+        <button id="langToggle" class="toggle-btn" aria-label="Dil değiştir">TR</button>
+        <button id="themeToggle" class="toggle-btn" aria-label="Tema değiştir"><i class="fas fa-moon"></i></button>
     </div>
+</div>
+
+<div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-8 md:p-12">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 gap-3 sm:gap-4">
+    <div>
+        <h1 data-lang="title" class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-2">ToDo Java Project</h1>
+        <p data-lang="subtitle" class="text-slate-500 text-base sm:text-lg">1. Sınıf Projesi - OOP Dersi Web Uygulaması</p>
+    </div>
+    <a href="https://github.com/Bilgehankbs/ToDoList" target="_blank" rel="noopener noreferrer" aria-label="GitHub deposuna git" class="inline-flex items-center bg-slate-900 text-white px-4 sm:px-5 py-2.5 rounded-lg hover:bg-slate-800 transition-colors font-medium text-sm sm:text-base">
+        <i class="fab fa-github text-lg sm:text-xl mr-2" aria-hidden="true"></i> <span data-lang="github">GitHub'da İncele</span>
+    </a>
+</div>
+
+<p data-lang="intro" class="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">Bu sistem, sınıf arkadaşlarımla birlikte Nesne Yönelimli Programlama (OOP) yeteneklerimizi pratik bir ürüne dönüştürmek amacıyla geliştirdiğimiz bir Java web uygulamasıdır. Kullanıcıların görevlerini ve notlarını yönetebildiği, sohbet edebildiği güvenli bir altyapı üzerine kurulmuştur.</p>
+
+<h2 data-lang="features_title_text" class="text-xl sm:text-2xl font-bold border-b border-slate-200 pb-2 mb-3 sm:mb-4 text-slate-900">Temel Özellikler</h2>
+<ul class="space-y-2 sm:space-y-3 mb-6 sm:mb-8 text-slate-700 text-sm sm:text-base">
+<li><strong data-lang="feat_1_title">Kullanıcı Yönetimi:</strong> <span data-lang="feat_1">Kayıt, giriş ve dinamik profil ayarları.</span></li>
+<li><strong data-lang="feat_2_title">Görev Sistemi:</strong> <span data-lang="feat_2">Notları ve görevleri oluşturma, düzenleme, silme ve saklama işlemleri.</span></li>
+<li><strong data-lang="feat_3_title">İletişim:</strong> <span data-lang="feat_3">Ayrı not ve görev sekmeleri barındıran bireysel ve grup sohbetleri.</span></li>
+<li><strong data-lang="feat_4_title">Modern Arayüz:</strong> <span data-lang="feat_4">Bootstrap 5 ve JavaScript kullanılarak hazırlanan gradient tasarımlı duyarlı UI.</span></li>
+<li><strong data-lang="feat_5_title">Gelişmiş Güvenlik:</strong> <span data-lang="feat_5">Tüm veriler BCrypt ile şifrelenir, Spring Security kullanılarak XSS/CSRF koruması ve form doğrulama işlemleri sağlanır.</span></li>
+</ul>
+
+<h2 data-lang="tech_title_text" class="text-xl sm:text-2xl font-bold border-b border-slate-200 pb-2 mb-3 sm:mb-4 text-slate-900">Teknolojiler & Mimari</h2>
+<div class="flex flex-wrap gap-2 mb-2">
+<span class="bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-md text-sm">Java</span>
+<span class="bg-green-50 text-green-700 border border-green-200 px-3 py-1 rounded-md text-sm">Spring Boot</span>
+<span class="bg-indigo-50 text-indigo-700 border border-indigo-200 px-3 py-1 rounded-md text-sm">MySQL</span>
+<span class="bg-slate-100 text-slate-700 border border-slate-300 px-3 py-1 rounded-md text-sm">Spring Security & BCrypt</span>
+</div>
+</div>
+</div>
+
+<script>
+var LANG={tr:{back:"Portfolyoya Dön",title:"ToDo Java Project",subtitle:"1. Sınıf Projesi - OOP Dersi Web Uygulaması",github:"GitHub'da İncele",intro:"Bu sistem, sınıf arkadaşlarımla birlikte Nesne Yönelimli Programlama (OOP) yeteneklerimizi pratik bir ürüne dönüştürmek amacıyla geliştirdiğimiz bir Java web uygulamasıdır. Kullanıcıların görevlerini ve notlarını yönetebildiği, sohbet edebildiği güvenli bir altyapı üzerine kurulmuştur.",features_title_text:"Temel Özellikler",feat_1_title:"Kullanıcı Yönetimi:",feat_1:"Kayıt, giriş ve dinamik profil ayarları.",feat_2_title:"Görev Sistemi:",feat_2:"Notları ve görevleri oluşturma, düzenleme, silme ve saklama işlemleri.",feat_3_title:"İletişim:",feat_3:"Ayrı not ve görev sekmeleri barındıran bireysel ve grup sohbetleri.",feat_4_title:"Modern Arayüz:",feat_4:"Bootstrap 5 ve JavaScript kullanılarak hazırlanan gradient tasarımlı duyarlı UI.",feat_5_title:"Gelişmiş Güvenlik:",feat_5:"Tüm veriler BCrypt ile şifrelenir, Spring Security kullanılarak XSS/CSRF koruması ve form doğrulama işlemleri sağlanır.",tech_title_text:"Teknolojiler & Mimari"},en:{back:"Back to Portfolio",title:"ToDo Java Project",subtitle:"1st Year Project - OOP Course Web App",github:"View on GitHub",intro:"This system is a Java web application we developed together with classmates to transform our OOP skills into a practical product. It is built on a secure infrastructure where users can manage their tasks and notes and engage in chat.",features_title_text:"Core Features",feat_1_title:"User Management:",feat_1:"Registration, login, and dynamic profile settings.",feat_2_title:"Task System:",feat_2:"Create, edit, delete, and save notes and tasks.",feat_3_title:"Communication:",feat_3:"Individual and group chats with separate note and task tabs.",feat_4_title:"Modern Interface:",feat_4:"Responsive UI with gradient designs built using Bootstrap 5 and JavaScript.",feat_5_title:"Advanced Security:",feat_5:"All data encrypted with BCrypt; XSS/CSRF protection and form validation provided via Spring Security.",tech_title_text:"Technologies & Architecture"}};
+var currentLang=localStorage.getItem('lang')||'tr';
+function applyLang(lang){currentLang=lang;localStorage.setItem('lang',lang);document.documentElement.lang=lang==='tr'?'tr':'en';document.title='ToDo Java Project - Bilgehan Akbaş';document.getElementById('langToggle').textContent=lang==='tr'?'TR':'EN';document.querySelectorAll('[data-lang]').forEach(function(el){var k=el.getAttribute('data-lang');if(LANG[lang]&&LANG[lang][k])el.textContent=LANG[lang][k];});}
+document.getElementById('langToggle').addEventListener('click',function(){applyLang(currentLang==='tr'?'en':'tr');});
+function applyTheme(isDark){
+    if(isDark){
+        document.body.classList.add('dark');
+        document.getElementById('themeToggle').innerHTML='<i class="fas fa-sun"></i>';
+    }else{
+        document.body.classList.remove('dark');
+        document.getElementById('themeToggle').innerHTML='<i class="fas fa-moon"></i>';
+    }
+    localStorage.setItem('theme',isDark?'dark':'light');
+}
+if(localStorage.getItem('theme')==='dark')applyTheme(true);
+document.getElementById('themeToggle').addEventListener('click',function(){applyTheme(!document.body.classList.contains('dark'));});
+applyLang(currentLang);
+</script>
 </body>
 </html>
