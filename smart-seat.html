@@ -1,53 +1,103 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart-Seat AI - Bilgehan Akbaş</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Smart-Seat AI - Akıllı Kütüphane Takip Sistemi. YOLOv8 ve OpenCV tabanlı gerçek zamanlı doluluk analizi.">
+<meta name="author" content="Bilgehan Akbaş">
+<meta name="theme-color" content="#2563eb">
+<meta property="og:title" content="Smart-Seat AI - Bilgehan Akbaş">
+<meta property="og:description" content="Kütüphane doluluk oranlarını takip eden yapay zeka destekli sistem. YOLOv8, OpenCV, C# ve SQLite3.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://bilgehanakbas.com/smart-seat.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial, sans-serif' font-weight='900' fill='white' text-anchor='middle'%3EBA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease; }
+.toggle-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #cbd5e1; background: #fff; color: #475569; cursor: pointer; transition: all 0.25s ease; font-size: 14px; font-weight: bold; }
+.toggle-btn:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+a:focus-visible, button:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; border-radius: 4px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+body.dark { background-color: #0f172a; color: #cbd5e1; }
+body.dark .bg-white { background-color: #1e293b !important; }
+body.dark .bg-slate-50 { background-color: #0f172a !important; }
+body.dark .text-slate-900 { color: #f1f5f9 !important; }
+body.dark .text-slate-800 { color: #e2e8f0 !important; }
+body.dark .text-slate-700 { color: #cbd5e1 !important; }
+body.dark .text-slate-600 { color: #94a3b8 !important; }
+body.dark .text-slate-500 { color: #64748b !important; }
+body.dark .border-slate-200 { border-color: #334155 !important; }
+body.dark .border-slate-100 { border-color: #334155 !important; }
+body.dark .bg-slate-50 { background-color: #1e293b !important; }
+body.dark .toggle-btn { background: #1e293b; border-color: #475569; color: #cbd5e1; }
+body.dark .toggle-btn:hover { border-color: #3b82f6; color: #3b82f6; background: #1e3a5f; }
+body.dark .text-blue-800 { color: #60a5fa !important; }
+@media (max-width: 640px) { .page-container { padding-left: 12px; padding-right: 12px; padding-top: 1.5rem; padding-bottom: 1.5rem; } h1 { font-size: 1.75rem !important; } h2 { font-size: 1.25rem !important; } }
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
-    
-    <div class="max-w-4xl mx-auto px-4 py-10">
-        <a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold mb-8 transition-colors">
-            <i class="fas fa-arrow-left mr-2"></i> Portfolyoya Dön
-        </a>
+<body class="bg-slate-50 text-slate-800 antialiased">
+<script>(function(){var t=localStorage.getItem('theme');if(t==='dark'){document.body.classList.add('dark');}})();</script>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 md:p-12">
-            <h1 class="text-4xl font-extrabold text-slate-900 mb-2">Smart-Seat AI</h1>
-            <p class="text-slate-500 text-lg mb-8">Akıllı Kütüphane Takip Sistemi</p>
-
-            <div class="prose prose-slate max-w-none">
-                <p class="text-lg leading-relaxed mb-8">
-                    Kütüphanelerde boş masa bulmak, tüm katları dolaşmak zorunda kalan öğrenciler için büyük bir zaman kaybına yol açmaktadır[cite: 4]. Ayrıca eşya bırakılıp terk edilen masalar, gerçekte kullanılmadığı halde dolu görünerek büyük bir kapasite verimsizliği yaratmaktadır[cite: 4]. Smart-Seat AI, bu problemleri çözmek üzere geliştirdiğimiz donanım destekli akıllı bir görüntü işleme projesidir.
-                </p>
-
-                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900">Projenin Amacı ve Özellikleri</h3>
-                <ul class="space-y-3 mb-8 text-slate-700">
-                    <li><strong>Gerçek Zamanlı Analiz:</strong> Kamera tabanlı görüntü işleme sistemleri ile masa durumlarının anlık olarak tespit edilmesi[cite: 4].</li>
-                    <li><strong>Akıllı Sınıflandırma:</strong> Masalar yalnızca boş veya dolu olarak değil; eğer masada insan yok ancak eşya (kitap, çanta, laptop) tespit edilirse "Rezerve" (Dikkat) olarak kategorize edilir[cite: 4].</li>
-                    <li><strong>Kullanıcı Yönlendirme:</strong> Görsel arayüz üzerinden anlık doluluk haritası kullanıcıya sunularak zaman tasarrufu sağlanır[cite: 4].</li>
-                </ul>
-
-                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900">Teknik Mimari</h3>
-                <div class="grid md:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <h4 class="font-bold text-slate-800 mb-2">YOLOv8 & OpenCV</h4>
-                        <p class="text-sm text-slate-600">Görüntüyü hücrelere (grid) bölerek ve her hücrenin içinde insan veya nesne olup olmadığını analiz ederek[cite: 4], eş zamanlı, yüksek hızlı tespit yapan son teknoloji YOLOv8 nesne algılama motoru kullanılmıştır[cite: 4].</p>
-                    </div>
-                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <h4 class="font-bold text-slate-800 mb-2">C# & SQLite3</h4>
-                        <p class="text-sm text-slate-600">Masa durumu verilerinin güvenli depolanması ve yönetimi SQLite3 ile sağlanırken, yönetim ve takip arayüzü C# .NET Framework ile oluşturulmuştur[cite: 4].</p>
-                    </div>
-                </div>
-
-                <h3 class="text-2xl font-bold border-b border-slate-200 pb-2 mb-4 text-slate-900">Benim Rolüm</h3>
-                <p class="text-slate-700 leading-relaxed mb-8">
-                    <strong>Yapay Zeka ve Görüntü İşleme Geliştiricisi:</strong> Projenin çekirdek yapay zekâ entegrasyonlarını gerçekleştirdim. Ultralytics tarafından yayınlanan YOLOv8 modelinin projeye dâhil edilmesini, OpenCV ile analiz süreçlerinin başlatılmasını ve nesne-insan ayırt etme senaryolarındaki güven eşiği ayarlamalarını tasarladım.
-                </p>
-            </div>
-        </div>
+<div class="max-w-4xl mx-auto px-4 py-6 sm:py-10 page-container">
+<div class="flex flex-wrap items-center justify-between mb-6 sm:mb-8 gap-4">
+    <a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition-colors text-sm sm:text-base">
+        <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> <span data-lang="back">Portfolyoya Dön</span>
+    </a>
+    <div class="flex items-center gap-2">
+        <button id="langToggle" class="toggle-btn" aria-label="Dil değiştir">TR</button>
+        <button id="themeToggle" class="toggle-btn" aria-label="Tema değiştir"><i class="fas fa-moon"></i></button>
     </div>
+</div>
+
+<div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-8 md:p-12">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 gap-3 sm:gap-4">
+    <div>
+        <h1 data-lang="title" class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-2">Smart-Seat AI</h1>
+        <p data-lang="subtitle" class="text-slate-500 text-base sm:text-lg">2. Sınıf Projesi - Akıllı Kütüphane Takip Sistemi</p>
+    </div>
+</div>
+
+<p data-lang="intro" class="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">Kütüphanelerde boş masa bulmak, tüm katları dolaşmak zorunda kalan öğrenciler için büyük bir zaman kaybına yol açmaktadır. Ayrıca eşya bırakılıp terk edilen masalar, gerçekte kullanılmadığı halde dolu görünerek büyük bir kapasite verimsizliği yaratmaktadır. Smart-Seat AI, bu problemleri çözmek üzere geliştirdiğimiz donanım destekli akıllı bir görüntü işleme projesidir.</p>
+
+<h2 data-lang="purpose_title_text" class="text-xl sm:text-2xl font-bold border-b border-slate-200 pb-2 mb-3 sm:mb-4 text-slate-900">Projenin Amacı ve Özellikleri</h2>
+<ul class="space-y-2 sm:space-y-3 mb-6 sm:mb-8 text-slate-700 text-sm sm:text-base">
+<li><strong data-lang="purpose_1_title">Gerçek Zamanlı Analiz:</strong> <span data-lang="purpose_1">Kamera tabanlı görüntü işleme sistemleri ile masa durumlarının anlık olarak tespit edilmesi.</span></li>
+<li><strong data-lang="purpose_2_title">Akıllı Sınıflandırma:</strong> <span data-lang="purpose_2">Masalar yalnızca boş veya dolu olarak değil; eğer masada insan yok ancak eşya (kitap, çanta, laptop) tespit edilirse "Rezerve" (Dikkat) olarak kategorize edilir.</span></li>
+<li><strong data-lang="purpose_3_title">Kullanıcı Yönlendirme:</strong> <span data-lang="purpose_3">Görsel arayüz üzerinden anlık doluluk haritası kullanıcıya sunularak zaman tasarrufu sağlanır.</span></li>
+</ul>
+
+<h2 data-lang="tech_title_text" class="text-xl sm:text-2xl font-bold border-b border-slate-200 pb-2 mb-3 sm:mb-4 text-slate-900">Teknik Mimari</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+<div class="bg-slate-50 p-3 sm:p-4 rounded-lg border border-slate-200"><h3 class="font-bold text-slate-800 mb-2">YOLOv8 & OpenCV</h3><p data-lang="tech_1" class="text-sm text-slate-600">Görüntüyü hücrelere (grid) bölerek ve her hücrenin içinde insan veya nesne olup olmadığını analiz ederek, eş zamanlı, yüksek hızlı tespit yapan son teknoloji YOLOv8 nesne algılama motoru kullanılmıştır.</p></div>
+<div class="bg-slate-50 p-3 sm:p-4 rounded-lg border border-slate-200"><h3 class="font-bold text-slate-800 mb-2">C# & SQLite3</h3><p data-lang="tech_2" class="text-sm text-slate-600">Masa durumu verilerinin güvenli depolanması ve yönetimi SQLite3 ile sağlanırken, yönetim ve takip arayüzü C# .NET Framework ile oluşturulmuştur.</p></div>
+</div>
+
+<h2 data-lang="role_title_text" class="text-xl sm:text-2xl font-bold border-b border-slate-200 pb-2 mb-3 sm:mb-4 text-slate-900">Benim Rolüm</h2>
+<p data-lang="role_text" class="text-slate-700 leading-relaxed text-sm sm:text-base"> <strong>Yapay Zeka ve Görüntü İşleme Geliştiricisi:</strong> Projenin çekirdek yapay zekâ entegrasyonlarını gerçekleştirdim. Ultralytics tarafından yayınlanan YOLOv8 modelinin projeye dâhil edilmesini, OpenCV ile analiz süreçlerinin başlatılmasını ve nesne-insan ayırt etme senaryolarındaki güven eşiği ayarlamalarını tasarladım.</p>
+</div>
+</div>
+
+<script>
+var LANG={tr:{back:"Portfolyoya Dön",title:"Smart-Seat AI",subtitle:"2. Sınıf Projesi - Akıllı Kütüphane Takip Sistemi",intro:"Kütüphanelerde boş masa bulmak, tüm katları dolaşmak zorunda kalan öğrenciler için büyük bir zaman kaybına yol açmaktadır. Ayrıca eşya bırakılıp terk edilen masalar, gerçekte kullanılmadığı halde dolu görünerek büyük bir kapasite verimsizliği yaratmaktadır. Smart-Seat AI, bu problemleri çözmek üzere geliştirdiğimiz donanım destekli akıllı bir görüntü işleme projesidir.",purpose_title_text:"Projenin Amacı ve Özellikleri",purpose_1_title:"Gerçek Zamanlı Analiz:",purpose_1:"Kamera tabanlı görüntü işleme sistemleri ile masa durumlarının anlık olarak tespit edilmesi.",purpose_2_title:"Akıllı Sınıflandırma:",purpose_2:'Masalar yalnızca boş veya dolu olarak değil; eğer masada insan yok ancak eşya (kitap, çanta, laptop) tespit edilirse "Rezerve" (Dikkat) olarak kategorize edilir.',purpose_3_title:"Kullanıcı Yönlendirme:",purpose_3:"Görsel arayüz üzerinden anlık doluluk haritası kullanıcıya sunularak zaman tasarrufu sağlanır.",tech_title_text:"Teknik Mimari",tech_1:"Görüntüyü hücrelere (grid) bölerek ve her hücrenin içinde insan veya nesne olup olmadığını analiz ederek, eş zamanlı, yüksek hızlı tespit yapan son teknoloji YOLOv8 nesne algılama motoru kullanılmıştır.",tech_2:"Masa durumu verilerinin güvenli depolanması ve yönetimi SQLite3 ile sağlanırken, yönetim ve takip arayüzü C# .NET Framework ile oluşturulmuştur.",role_title_text:"Benim Rolüm",role_text:"<strong>Yapay Zeka ve Görüntü İşleme Geliştiricisi:</strong> Projenin çekirdek yapay zekâ entegrasyonlarını gerçekleştirdim. Ultralytics tarafından yayınlanan YOLOv8 modelinin projeye dâhil edilmesini, OpenCV ile analiz süreçlerinin başlatılmasını ve nesne-insan ayırt etme senaryolarındaki güven eşiği ayarlamalarını tasarladım."},
+en:{back:"Back to Portfolio",title:"Smart-Seat AI",subtitle:"2nd Year Project - Smart Library Tracking System",intro:"Finding an empty desk in libraries causes a huge waste of time for students who have to walk through all floors. Additionally, desks left with belongings appear occupied even when not in use, creating massive capacity inefficiency. Smart-Seat AI is a hardware-supported intelligent image processing project we developed to solve these problems.",purpose_title_text:"Purpose and Features",purpose_1_title:"Real-Time Analysis:",purpose_1:"Instant detection of desk statuses through camera-based image processing systems.",purpose_2_title:"Smart Classification:",purpose_2:'Desks are not just classified as empty or occupied; if no person is at the desk but items (books, bags, laptops) are detected, it\'s categorized as "Reserved" (Attention).',purpose_3_title:"User Guidance:",purpose_3:"An instant occupancy map is presented to users through a visual interface, saving them time.",tech_title_text:"Technical Architecture",tech_1:"The cutting-edge YOLOv8 object detection engine is used, which divides the image into grids and analyzes whether there are people or objects in each cell for simultaneous high-speed detection.",tech_2:"Desk status data is securely stored and managed with SQLite3, while the management and tracking interface is built with C# .NET Framework.",role_title_text:"My Role",role_text:"<strong>AI & Image Processing Developer:</strong> I implemented the core AI integrations of the project. I designed the integration of the YOLOv8 model published by Ultralytics into the project, initiated analysis processes with OpenCV, and designed confidence threshold adjustments for object-human discrimination scenarios."}};
+var currentLang=localStorage.getItem('lang')||'tr';
+function applyLang(lang){currentLang=lang;localStorage.setItem('lang',lang);document.documentElement.lang=lang==='tr'?'tr':'en';document.title='Smart-Seat AI - Bilgehan Akbaş';document.getElementById('langToggle').textContent=lang==='tr'?'TR':'EN';document.querySelectorAll('[data-lang]').forEach(function(el){var k=el.getAttribute('data-lang');if(LANG[lang]&&LANG[lang][k]){if(LANG[lang][k].startsWith('<strong>'))el.innerHTML=LANG[lang][k];else el.textContent=LANG[lang][k];}});}
+document.getElementById('langToggle').addEventListener('click',function(){applyLang(currentLang==='tr'?'en':'tr');});
+function applyTheme(isDark){
+    if(isDark){
+        document.body.classList.add('dark');
+        document.getElementById('themeToggle').innerHTML='<i class="fas fa-sun"></i>';
+    }else{
+        document.body.classList.remove('dark');
+        document.getElementById('themeToggle').innerHTML='<i class="fas fa-moon"></i>';
+    }
+    localStorage.setItem('theme',isDark?'dark':'light');
+}
+if(localStorage.getItem('theme')==='dark')applyTheme(true);
+document.getElementById('themeToggle').addEventListener('click',function(){applyTheme(!document.body.classList.contains('dark'));});
+applyLang(currentLang);
+</script>
 </body>
 </html>
