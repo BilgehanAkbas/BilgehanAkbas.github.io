@@ -5,22 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bilgehan Akbaş - Portfolyo</title>
 
+    <!-- Theme Color (Aydınlık ve Karanlık mod destekli) -->
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+
+    <!-- Preconnect & DNS-Prefetch (Performans İyileştirmesi) -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="preconnect" href="https://ui-avatars.com">
+    <link rel="dns-prefetch" href="https://ui-avatars.com">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+
     <!-- Favicon (BA logolu, dosya gerektirmeyen SVG ikon) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial, sans-serif' font-weight='900' fill='white' text-anchor='middle'%3EBA%3C/text%3E%3C/svg%3E">
-
-    <!-- Temel SEO Etiketleri -->
-    <meta name="description" content="Gazi Üniversitesi Bilgisayar Mühendisliği öğrencisi Bilgehan Akbaş'ın kişisel portfolyosu. Siber güvenlik, yapay zeka ve gömülü sistemler üzerine projeler.">
-    <!-- ÖNEMLİ: Aşağıdaki href'i sitenizin gerçek yayın adresiyle değiştirin -->
-    <link rel="canonical" href="https://SITENIZIN-GERCEK-ADRESI.com/">
-
-    <!-- Temel Content-Security-Policy: script/style kaynaklarını bilinen CDN'lerle sınırlar -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://cdnjs.cloudflare.com data:; img-src 'self' https: data:; connect-src 'self' https://kisiselai.bilgehanakbas0.workers.dev https://wp.bilgehanakbas0.workers.dev https://static.cloudflareinsights.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'">
 
     <!-- Open Graph / Sosyal Medya Link Önizleme Etiketleri -->
     <meta property="og:title" content="Bilgehan Akbaş - Portfolyo">
     <meta property="og:description" content="Gazi Üniversitesi Bilgisayar Mühendisliği öğrencisi. Siber güvenlik, yapay zeka ve gömülü sistemler üzerine projeler.">
     <meta property="og:image" content="https://ui-avatars.com/api/?name=Bilgehan+Akbas&size=512&background=2563eb&color=fff&bold=true&format=png">
+    <meta property="og:url" content="https://bilgehanakbas.com"> <!-- Kendi domaininizi buraya girebilirsiniz -->
     <meta property="og:type" content="website">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Bilgehan Akbaş - Portfolyo">
     <meta name="twitter:description" content="Gazi Üniversitesi Bilgisayar Mühendisliği öğrencisi. Siber güvenlik, yapay zeka ve gömülü sistemler üzerine projeler.">
@@ -111,12 +121,16 @@
     </style>
 </head>
 <body class="antialiased selection:bg-blue-500 selection:text-white relative">
+
+    <!-- "İçeriğe Geç" (Skip Link) - Erişilebilirlik -->
+    <a href="#hakkimda" class="absolute top-0 left-0 -translate-y-full focus:translate-y-0 bg-blue-600 text-white px-4 py-2 z-[100] transition-transform duration-300 rounded-br-md shadow-lg" data-lang="skip_link">İçeriğe geç</a>
+
     <!-- Tema flaşını engelle -->
     <script>
     (function(){var t=localStorage.getItem('theme');if(t==='dark'){document.body.classList.add('dark');}})();
     </script>
 
-    <!-- Chatbot Aç/Kapat (Minimize) Butonu - sayfa açıldığında görünür, tıklanınca sohbet açılır -->
+    <!-- Chatbot Aç/Kapat (Minimize) Butonu -->
     <button id="chatMinimizedBar" class="flex fixed bottom-6 right-6 z-50 bg-blue-600 text-white shadow-xl rounded-full pl-3 pr-5 py-2.5 items-center gap-2.5 hover:bg-blue-700 chat-bounce">
         <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden shrink-0">
             <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -133,7 +147,7 @@
         </div>
     </button>
 
-    <!-- Chatbot Penceresi (varsayılan olarak kapalı, butona tıklayınca açılır) -->
+    <!-- Chatbot Penceresi -->
     <div id="chatWindow" class="hidden-panel fixed z-50 bottom-6 right-6 w-[85vw] max-w-[300px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
         <div class="bg-blue-600 text-white px-4 py-3 flex items-center justify-between shrink-0">
             <div class="flex items-center gap-2.5">
@@ -151,16 +165,16 @@
                     <p class="text-xs text-blue-100 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full inline-block"></span> <span data-lang="online">çevrimiçi</span></p>
                 </div>
             </div>
-            <button id="chatMinimize" class="text-white/80 hover:text-white text-sm" aria-label="Sohbeti küçült"><i class="fas fa-chevron-down"></i></button>
+            <button id="chatMinimize" class="text-white/80 hover:text-white text-sm"><i class="fas fa-chevron-down"></i></button>
         </div>
 
-        <div id="chatMessages" class="chat-scroll flex-grow overflow-y-auto px-3 py-3 space-y-2.5 bg-slate-50 h-[300px] max-h-[50vh]" role="log" aria-live="polite" aria-label="Sohbet mesajları"></div>
+        <div id="chatMessages" class="chat-scroll flex-grow overflow-y-auto px-3 py-3 space-y-2.5 bg-slate-50 h-[300px] max-h-[50vh]"></div>
 
         <div id="chatQuickReplies" class="px-3 pb-2 flex flex-wrap gap-1.5 shrink-0 bg-slate-50"></div>
 
         <div class="border-t border-slate-200 p-2.5 flex items-center gap-2 shrink-0 bg-white">
             <input id="chatInput" type="text" data-lang-placeholder="soru_sor" class="flex-grow bg-slate-100 border border-slate-200 rounded-full px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Bir soru sor...">
-            <button id="sendChatBtn" class="w-9 h-9 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center" aria-label="Mesajı gönder">
+            <button id="sendChatBtn" class="w-9 h-9 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center">
                 <i class="fas fa-paper-plane text-xs"></i>
             </button>
         </div>
@@ -341,7 +355,7 @@
         </div>
     </section>
 
-    <!-- Sertifikalar (İkili Izgara / Grid Düzeni) -->
+    <!-- Sertifikalar -->
     <section id="sertifikalar" class="py-16 px-4 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
         <div class="max-w-7xl mx-auto relative z-10">
             <div class="text-center mb-10" data-aos="fade-up">
@@ -469,7 +483,7 @@
 
                 <div class="px-6 pb-6">
                     <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="50">
-                        <div class="w-14 h-14 shrink-0"><img src="https://ui-avatars.com/api/?name=G&background=e0f2fe&color=0284c7&rounded=true&font-size=0.6" alt="Gazi Logo" class="w-full h-full object-cover"></div>
+                        <div class="w-14 h-14 shrink-0"><img width="56" height="56" src="https://ui-avatars.com/api/?name=G&background=e0f2fe&color=0284c7&rounded=true&font-size=0.6" alt="Gazi Logo" class="w-full h-full object-cover"></div>
                         <div class="flex-grow">
                             <div class="flex items-center">
                                 <h4 class="text-lg font-bold text-slate-900 leading-tight" data-lang="exp_gazi_title">Gazi Üniversitesi Yapay Zekâ Topluluğu</h4>
@@ -501,7 +515,7 @@
                     </div>
                     <hr class="border-slate-200 my-2">
                     <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="100">
-                        <div class="w-14 h-14 flex items-center justify-center shrink-0"><img src="https://ui-avatars.com/api/?name=Ak&background=fee2e2&color=dc2626&rounded=false&font-size=0.5" alt="Akbank" class="w-12 h-12 object-cover rounded-md"></div>
+                        <div class="w-14 h-14 flex items-center justify-center shrink-0"><img width="48" height="48" src="https://ui-avatars.com/api/?name=Ak&background=fee2e2&color=dc2626&rounded=false&font-size=0.5" alt="Akbank" class="w-12 h-12 object-cover rounded-md"></div>
                         <div class="flex-grow">
                             <h4 class="text-lg font-bold text-slate-900 leading-tight" data-lang="exp_akbank">Siber Güvenlik Analisti Eğitim Programı</h4>
                             <p class="text-base text-slate-800 mt-1">Akbank</p>
@@ -510,7 +524,7 @@
                     </div>
                     <hr class="border-slate-200 my-2">
                     <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="150">
-                        <div class="w-14 h-14 flex items-center justify-center shrink-0"><img src="https://ui-avatars.com/api/?name=HÜ&background=f1f5f9&color=334155&rounded=false&font-size=0.4" alt="Hüma" class="w-12 h-12 object-cover rounded-md"></div>
+                        <div class="w-14 h-14 flex items-center justify-center shrink-0"><img width="48" height="48" src="https://ui-avatars.com/api/?name=HÜ&background=f1f5f9&color=334155&rounded=false&font-size=0.4" alt="Hüma" class="w-12 h-12 object-cover rounded-md"></div>
                         <div class="flex-grow">
                             <h4 class="text-lg font-bold text-slate-900 leading-tight">Hüma UAV Software Team Member</h4>
                             <p class="text-base text-slate-800 mt-1">Hüma Takımı · Serbest çalışan</p>
@@ -519,7 +533,7 @@
                     </div>
                     <hr class="border-slate-200 my-2">
                     <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="200">
-                        <div class="w-14 h-14 flex items-center justify-center shrink-0"><img src="https://ui-avatars.com/api/?name=YZ&background=dbeafe&color=2563eb&rounded=false&font-size=0.4" alt="YZ" class="w-12 h-12 object-cover rounded-md"></div>
+                        <div class="w-14 h-14 flex items-center justify-center shrink-0"><img width="48" height="48" src="https://ui-avatars.com/api/?name=YZ&background=dbeafe&color=2563eb&rounded=false&font-size=0.4" alt="YZ" class="w-12 h-12 object-cover rounded-md"></div>
                         <div class="flex-grow">
                             <h4 class="text-lg font-bold text-slate-900 leading-tight" data-lang="exp_ai">Yapay Zeka Uygulamaları Geliştirme</h4>
                             <p class="text-base text-slate-800 mt-1">Yapay Zeka ve Teknoloji Akademisi</p>
@@ -536,7 +550,7 @@
                 </div>
                 <div class="px-6 pb-6">
                     <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="50">
-                        <div class="w-14 h-14 shrink-0"><img src="https://ui-avatars.com/api/?name=K&background=fee2e2&color=dc2626&rounded=md&font-size=0.6" alt="Kızılay" class="w-12 h-12 object-cover rounded-md"></div>
+                        <div class="w-14 h-14 shrink-0"><img width="48" height="48" src="https://ui-avatars.com/api/?name=K&background=fee2e2&color=dc2626&rounded=md&font-size=0.6" alt="Kızılay" class="w-12 h-12 object-cover rounded-md"></div>
                         <div class="flex-grow">
                             <h4 class="text-lg font-bold text-slate-900 leading-tight" data-lang="vol_active">Aktif Gönüllü</h4>
                             <p class="text-base text-slate-800 mt-1">Kızılay</p>
@@ -545,7 +559,7 @@
                     </div>
                     <hr class="border-slate-200 my-2">
                     <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="100">
-                        <div class="w-14 h-14 shrink-0"><img src="https://ui-avatars.com/api/?name=TOG&background=dcfce3&color=16a34a&rounded=md&font-size=0.4" alt="TOG" class="w-12 h-12 object-cover rounded-md"></div>
+                        <div class="w-14 h-14 shrink-0"><img width="48" height="48" src="https://ui-avatars.com/api/?name=TOG&background=dcfce3&color=16a34a&rounded=md&font-size=0.4" alt="TOG" class="w-12 h-12 object-cover rounded-md"></div>
                         <div class="flex-grow">
                             <h4 class="text-lg font-bold text-slate-900 leading-tight" data-lang="vol_active">Aktif Gönüllü</h4>
                             <p class="text-base text-slate-800 mt-1">TOG (Toplum Gönüllüleri Vakfı)</p>
@@ -563,7 +577,7 @@
                 <div class="px-6 pb-6">
                     <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="50">
                         <div class="w-14 h-14 shrink-0">
-                            <img src="https://ui-avatars.com/api/?name=GÜ&background=f3e8ff&color=9333ea&rounded=false&font-size=0.5" alt="Gazi Üniversitesi" class="w-12 h-12 object-cover rounded-md">
+                            <img width="48" height="48" src="https://ui-avatars.com/api/?name=GÜ&background=f3e8ff&color=9333ea&rounded=false&font-size=0.5" alt="Gazi Üniversitesi" class="w-12 h-12 object-cover rounded-md">
                         </div>
                         <div class="flex-grow">
                             <h4 class="text-lg font-bold text-slate-900 leading-tight">Gazi Üniversitesi</h4>
@@ -575,7 +589,7 @@
                     <hr class="border-slate-200 my-2">
                     <div class="flex items-start gap-4 py-5" data-aos="fade-right" data-aos-delay="100">
                         <div class="w-14 h-14 shrink-0">
-                            <img src="https://ui-avatars.com/api/?name=75&background=fef3c7&color=d97706&rounded=false&font-size=0.5" alt="Lise" class="w-12 h-12 object-cover rounded-md">
+                            <img width="48" height="48" src="https://ui-avatars.com/api/?name=75&background=fef3c7&color=d97706&rounded=false&font-size=0.5" alt="Lise" class="w-12 h-12 object-cover rounded-md">
                         </div>
                         <div class="flex-grow">
                             <h4 class="text-lg font-bold text-slate-900 leading-tight">Muğla 75. Yıl Fen Lisesi</h4>
@@ -602,7 +616,7 @@
                 <a href="smart-seat.html" class="group border border-slate-200 rounded-lg overflow-hidden flex flex-col hover:shadow-xl transition-all hover:-translate-y-1 bg-white cursor-pointer" data-aos="zoom-in">
                     <div class="h-48 overflow-hidden relative">
                         <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                        <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=600" alt="Smart Library" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <img width="600" height="400" src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=600" alt="Smart Library" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">Smart-Seat AI</h4>
@@ -618,7 +632,7 @@
                 <a href="todo-project.html" class="group border border-slate-200 rounded-lg overflow-hidden flex flex-col hover:shadow-xl transition-all hover:-translate-y-1 bg-white cursor-pointer" data-aos="zoom-in" data-aos-delay="100">
                     <div class="h-48 overflow-hidden relative">
                         <div class="absolute inset-0 bg-green-900/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=600" alt="ToDo Project" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <img width="600" height="400" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=600" alt="ToDo Project" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-green-600 transition-colors">ToDo Java Project</h4>
@@ -635,7 +649,7 @@
                     <div class="h-48 overflow-hidden relative">
                         <div class="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-md z-20 shadow-md" data-lang="proj_dev">Geliştiriliyor</div>
                         <div class="absolute inset-0 bg-purple-900/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=600" alt="Mobius Chess" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <img width="600" height="400" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=600" alt="Mobius Chess" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">Mobius Şeridi Satranç</h4>
@@ -652,7 +666,7 @@
                     <div class="h-48 overflow-hidden relative">
                         <div class="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-md z-20 shadow-md" data-lang="proj_dev">Geliştiriliyor</div>
                         <div class="absolute inset-0 bg-orange-900/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" alt="ESP32 Project" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <img width="600" height="400" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" alt="ESP32 Project" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors" data-lang="proj_esp32_title">Akıllı Sensör (ESP32)</h4>
@@ -681,13 +695,20 @@
             </div>
             
             <form id="contactForm" class="space-y-4">
+                
+                <!-- Honeypot Alanı (Bot ve Spam koruması için gizli) -->
+                <div style="display:none;" aria-hidden="true">
+                    <label for="honeypot_field">Lütfen bu alanı boş bırakın (Bot Kontrolü)</label>
+                    <input type="text" id="honeypot_field" name="honeypot_field" tabindex="-1" autocomplete="off">
+                </div>
+
                 <div>
                     <label class="block text-slate-700 font-semibold mb-1 text-sm" data-lang="contact_name">İsminiz</label>
-                    <input type="text" id="senderName" class="w-full bg-slate-50/50 border border-slate-300 rounded-md px-4 py-3 text-slate-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="Adınız Soyadınız" required>
+                    <input type="text" id="senderName" autocomplete="name" class="w-full bg-slate-50/50 border border-slate-300 rounded-md px-4 py-3 text-slate-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="Adınız Soyadınız" required>
                 </div>
                 <div>
                     <label class="block text-slate-700 font-semibold mb-1 text-sm" data-lang="contact_phone">Telefon Numaranız</label>
-                    <input type="tel" id="senderPhone" inputmode="tel" pattern="[0-9\s\+\(\)]{10,15}" title="Lütfen geçerli bir telefon numarası girin (örn. 05XX XXX XX XX)" class="w-full bg-slate-50/50 border border-slate-300 rounded-md px-4 py-3 text-slate-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="05XX XXX XX XX" required>
+                    <input type="tel" id="senderPhone" autocomplete="tel" class="w-full bg-slate-50/50 border border-slate-300 rounded-md px-4 py-3 text-slate-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="05XX XXX XX XX" required>
                 </div>
                 <div>
                     <label class="block text-slate-700 font-semibold mb-1 text-sm" data-lang="contact_msg">Mesajınız</label>
@@ -696,7 +717,7 @@
                 <button type="submit" id="contactSubmitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-4 rounded-md shadow-sm transition-all duration-200 flex justify-center items-center gap-2 text-base">
                     <i class="fas fa-paper-plane"></i> <span data-lang="contact_send">Gönder</span>
                 </button>
-                <p id="contactStatus" class="text-center text-sm mt-1" role="status" aria-live="polite"></p>
+                <p id="contactStatus" class="text-center text-sm mt-1"></p>
             </form>
         </div>
     </section>
@@ -910,12 +931,22 @@
         const contactStatus = document.getElementById('contactStatus');
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            
+            // Honeypot Kontrolü
+            const honeypot = document.getElementById('honeypot_field').value;
+            if (honeypot) {
+                // Eğer alan doluysa bu bir bottur, sessizce işlemi iptal ediyoruz
+                return;
+            }
+
             const name = document.getElementById('senderName').value.trim();
             const phone = document.getElementById('senderPhone').value.trim();
             const message = document.getElementById('senderMessage').value.trim();
+            
             if (!name || !phone || !message) { contactStatus.textContent = LANG[currentLang].fill_fields; contactStatus.className = 'text-center text-sm mt-1 text-red-600'; return; }
             contactSubmitBtn.disabled = true; contactSubmitBtn.classList.add('opacity-60', 'cursor-not-allowed');
             contactStatus.textContent = LANG[currentLang].sending; contactStatus.className = 'text-center text-sm mt-1 text-slate-500';
+            
             try {
                 const res = await fetch(CONTACT_WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, message }) });
                 const data = await res.json();
