@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelimelik - Bilgehan Akbaş</title>
+<meta name="description" content="Kelimelik - Gizli Türkçe kelimeyi 8 tahminde bulmaya dayanan, tarayıcıda çalışan kelime tahmin oyunu.">
+<meta name="author" content="Bilgehan Akbaş">
+<meta name="theme-color" content="#2563eb">
+<meta property="og:title" content="Kelimelik - Bilgehan Akbaş">
+<meta property="og:description" content="Gizli Türkçe kelimeyi 8 tahminde bulmaya dayanan, tarayıcıda çalışan kelime tahmin oyunu.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://bilgehanakbas.github.io/kelimelik.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial, sans-serif' font-weight='900' fill='white' text-anchor='middle'%3EBA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease; }
+.toggle-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #cbd5e1; background: #fff; color: #475569; cursor: pointer; transition: all 0.25s ease; font-size: 14px; font-weight: bold; }
+.toggle-btn:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+a:focus-visible, button:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; border-radius: 4px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+body.dark { background-color: #0f172a; color: #cbd5e1; }
+body.dark .bg-white { background-color: #1e293b !important; }
+body.dark .bg-slate-50 { background-color: #0f172a !important; }
+body.dark .text-slate-900 { color: #f1f5f9 !important; }
+body.dark .text-slate-800 { color: #e2e8f0 !important; }
+body.dark .text-slate-700 { color: #cbd5e1 !important; }
+body.dark .text-slate-600 { color: #94a3b8 !important; }
+body.dark .text-slate-500 { color: #64748b !important; }
+body.dark .border-slate-200 { border-color: #334155 !important; }
+body.dark .border-slate-100 { border-color: #334155 !important; }
+body.dark .bg-slate-50 { background-color: #1e293b !important; }
+body.dark .bg-slate-100 { background-color: #1e293b !important; }
+body.dark .bg-blue-50 { background-color: #1e3a5f !important; }
+body.dark .border-blue-200 { border-color: #1e40af !important; }
+body.dark .bg-green-50 { background-color: #14532d !important; }
+body.dark .border-green-200 { border-color: #15803d !important; }
+body.dark .bg-amber-50 { background-color: #78350f !important; }
+body.dark .border-amber-200 { border-color: #b45309 !important; }
+body.dark .bg-indigo-50 { background-color: #2a1e5f !important; }
+body.dark .border-indigo-200 { border-color: #3b2e8f !important; }
+body.dark .bg-rose-50 { background-color: #4c0519 !important; }
+body.dark .border-rose-200 { border-color: #9f1239 !important; }
+body.dark .toggle-btn { background: #1e293b; border-color: #475569; color: #cbd5e1; }
+body.dark .toggle-btn:hover { border-color: #3b82f6; color: #3b82f6; background: #1e3a5f; }
+body.dark .text-blue-800 { color: #60a5fa !important; }
+body.dark table { color: #cbd5e1; }
+body.dark thead { background-color: #1e293b !important; }
+@media (max-width: 640px) { .page-container { padding-left: 12px; padding-right: 12px; padding-top: 1.5rem; padding-bottom: 1.5rem; } h1 { font-size: 1.75rem !important; } h2 { font-size: 1.25rem !important; } }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+<script>(function(){var t=localStorage.getItem('theme');if(t==='dark'){document.body.classList.add('dark');}})();</script>
+<div class="max-w-4xl mx-auto px-4 py-6 sm:py-10 page-container">
+
+<div class="flex flex-wrap items-center justify-between mb-6 sm:mb-8 gap-4">
+<a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition-colors text-sm sm:text-base">
+<i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> <span data-lang="back">Portfolyoya Dön</span>
+</a>
+<div class="flex items-center gap-2">
+<button id="langToggle" class="toggle-btn" aria-label="Dil değiştir">TR</button>
+<button id="themeToggle" class="toggle-btn" aria-label="Tema değiştir"><i class="fas fa-moon"></i></button>
+</div>
+</div>
+
+<div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-8 md:p-12">
+
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-8 gap-3 sm:gap-4">
+<div>
+<h1 data-lang="title" class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-2">Kelimelik</h1>
+<p data-lang="subtitle" class="text-slate-500 text-base sm:text-lg">Türkçe Kelime Tahmin Oyunu</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<a href="https://bilgehanakbas.github.io/Kelimelik/" target="_blank" rel="noopener noreferrer" aria-label="Oyunu oyna" class="inline-flex items-center bg-blue-600 text-white px-4 sm:px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm sm:text-base">
+<i class="fas fa-play mr-2" aria-hidden="true"></i> <span data-lang="play">Oyunu Oyna</span>
+</a>
+<a href="https://github.com/BilgehanAkbas/Kelimelik" target="_blank" rel="noopener noreferrer" aria-label="GitHub deposuna git" class="inline-flex items-center bg-slate-900 text-white px-4 sm:px-5 py-2.5 rounded-lg hover:bg-slate-800 transition-colors font-medium text-sm sm:text-base">
+<i class="fab fa-github text-lg sm:text-xl mr-2" aria-hidden="true"></i> <span data-lang="github">GitHub'da İncele</span>
+</a>
+</div>
+</div>
+
+<p data-lang="intro" class="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">Kelimelik, gizli Türkçe kelimeyi 8 tahminde bulmaya dayanan, tamamen tarayıcıda çalışan bir kelime tahmin oyunudur. Her tahminden sonra harflerin doğru/yanlış konumu renkli sayaçlarla gösterilir; oyuncu kutulara dokunarak kendi notlarını tutabilir.</p>
+
+<h2 data-lang="modes_title_text" class="text-xl sm:text-2xl font-bold border-b border-slate-200 pb-2 mb-3 sm:mb-4 text-slate-900">Oyun Modları</h2>
+<ul class="space-y-2 sm:space-y-3 mb-6 sm:mb-8 text-slate-700 text-sm sm:text-base">
+<li><strong data-lang="mode_1_title">Günlük Bulmaca:</strong> <span data-lang="mode_1">Her gün sabit bir 5 harfli bulmaca; aynı takvim gününde herkes aynı kelimeyi oynar ve günde bir kez tamamlanabilir.</span></li>
+<li><strong data-lang="mode_2_title">Klasik:</strong> <span data-lang="mode_2">4, 5 veya 6 harfli sınırsız oyun.</span></li>
+<li><strong data-lang="mode_3_title">Çok Oyunculu:</strong> <span data-lang="mode_3">Planlanan sonraki sürüm.</span></li>
+</ul>
+
+<h2 data-lang="features_title_text" class="text-xl sm:text-2xl font-bold border-b border-slate-200 pb-2 mb-3 sm:mb-4 text-slate-900">Temel Özellikler</h2>
+<ul class="space-y-2 sm:space-y-3 mb-6 sm:mb-8 text-slate-700 text-sm sm:text-base">
+<li><strong data-lang="feat_1_title">Zengin Kelime Sistemi:</strong> <span data-lang="feat_1">Geniş bir tahmin sözlüğü ve daha kontrollü, çözülebilir bir cevap havuzu.</span></li>
+<li><strong data-lang="feat_2_title">Akıllı İpucu:</strong> <span data-lang="feat_2">Oyun başına bir kez kullanılabilen, gizli kelimeyi doğrudan vermeyen güvenli ipucu sistemi.</span></li>
+<li><strong data-lang="feat_3_title">TDK Entegrasyonu:</strong> <span data-lang="feat_3">Kelime anlamı için TDK Güncel Türkçe Sözlük API bağlantısı.</span></li>
+<li><strong data-lang="feat_4_title">İstatistikler:</strong> <span data-lang="feat_4">Genel, günlük ve harf uzunluğuna göre istatistikler, favori kelimeler ve son 100 oyun geçmişi.</span></li>
+<li><strong data-lang="feat_5_title">PWA Desteği:</strong> <span data-lang="feat_5">Service Worker ile çevrimdışı çalışabilen, mobil uyumlu ve ana ekrana eklenebilir uygulama.</span></li>
+<li><strong data-lang="feat_6_title">Gizlilik Odaklı:</strong> <span data-lang="feat_6">Hesap veya backend yok; tüm veriler tarayıcının localStorage alanında saklanır.</span></li>
+<li><strong data-lang="feat_7_title">Sonuç Paylaşımı:</strong> <span data-lang="feat_7">Oyun sonucunu tek dokunuşla paylaşma özelliği.</span></li>
+</ul>
+
+<h2 data-lang="tech_title_text" class="text-xl sm:text-2xl font-bold border-b border-slate-200 pb-2 mb-3 sm:mb-4 text-slate-900">Teknolojiler & Mimari</h2>
+<div class="flex flex-wrap gap-2 mb-6 sm:mb-8">
+<span class="bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-md text-sm">JavaScript</span>
+<span class="bg-green-50 text-green-700 border border-green-200 px-3 py-1 rounded-md text-sm">PWA / Service Worker</span>
+<span class="bg-indigo-50 text-indigo-700 border border-indigo-200 px-3 py-1 rounded-md text-sm">localStorage</span>
+<span class="bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1 rounded-md text-sm">TDK API</span>
+<span class="bg-rose-50 text-rose-700 border border-rose-200 px-3 py-1 rounded-md text-sm">GitHub Actions</span>
+<span class="bg-slate-100 text-slate-700 border border-slate-300 px-3 py-1 rounded-md text-sm">Zemberek (sözlük verisi)</span>
+</div>
+
+<h2 data-lang="pool_title_text" class="text-xl sm:text-2xl font-bold border-b border-slate-200 pb-2 mb-3 sm:mb-4 text-slate-900">Kelime Havuzu</h2>
+<div class="overflow-x-auto mb-2">
+<table class="w-full text-left text-sm sm:text-base border border-slate-200 rounded-lg overflow-hidden">
+<thead class="bg-slate-50">
+<tr>
+<th data-lang="col_len" class="px-3 sm:px-4 py-2 font-semibold text-slate-900 border-b border-slate-200">Uzunluk</th>
+<th data-lang="col_guess" class="px-3 sm:px-4 py-2 font-semibold text-slate-900 border-b border-slate-200">Tahmin Havuzu</th>
+<th data-lang="col_answer" class="px-3 sm:px-4 py-2 font-semibold text-slate-900 border-b border-slate-200">Cevap Havuzu</th>
+</tr>
+</thead>
+<tbody class="text-slate-700">
+<tr><td class="px-3 sm:px-4 py-2 border-b border-slate-100">4 <span data-lang="letter">harf</span></td><td class="px-3 sm:px-4 py-2 border-b border-slate-100">1985</td><td class="px-3 sm:px-4 py-2 border-b border-slate-100">156</td></tr>
+<tr><td class="px-3 sm:px-4 py-2 border-b border-slate-100">5 <span data-lang="letter">harf</span></td><td class="px-3 sm:px-4 py-2 border-b border-slate-100">4921</td><td class="px-3 sm:px-4 py-2 border-b border-slate-100">659</td></tr>
+<tr><td class="px-3 sm:px-4 py-2">6 <span data-lang="letter">harf</span></td><td class="px-3 sm:px-4 py-2">4482</td><td class="px-3 sm:px-4 py-2">114</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+
+<script>
+var LANG={
+tr:{
+back:"Portfolyoya Dön",
+title:"Kelimelik",
+subtitle:"Türkçe Kelime Tahmin Oyunu",
+play:"Oyunu Oyna",
+github:"GitHub'da İncele",
+intro:"Kelimelik, gizli Türkçe kelimeyi 8 tahminde bulmaya dayanan, tamamen tarayıcıda çalışan bir kelime tahmin oyunudur. Her tahminden sonra harflerin doğru/yanlış konumu renkli sayaçlarla gösterilir; oyuncu kutulara dokunarak kendi notlarını tutabilir.",
+modes_title_text:"Oyun Modları",
+mode_1_title:"Günlük Bulmaca:",
+mode_1:"Her gün sabit bir 5 harfli bulmaca; aynı takvim gününde herkes aynı kelimeyi oynar ve günde bir kez tamamlanabilir.",
+mode_2_title:"Klasik:",
+mode_2:"4, 5 veya 6 harfli sınırsız oyun.",
+mode_3_title:"Çok Oyunculu:",
+mode_3:"Planlanan sonraki sürüm.",
+features_title_text:"Temel Özellikler",
+feat_1_title:"Zengin Kelime Sistemi:",
+feat_1:"Geniş bir tahmin sözlüğü ve daha kontrollü, çözülebilir bir cevap havuzu.",
+feat_2_title:"Akıllı İpucu:",
+feat_2:"Oyun başına bir kez kullanılabilen, gizli kelimeyi doğrudan vermeyen güvenli ipucu sistemi.",
+feat_3_title:"TDK Entegrasyonu:",
+feat_3:"Kelime anlamı için TDK Güncel Türkçe Sözlük API bağlantısı.",
+feat_4_title:"İstatistikler:",
+feat_4:"Genel, günlük ve harf uzunluğuna göre istatistikler, favori kelimeler ve son 100 oyun geçmişi.",
+feat_5_title:"PWA Desteği:",
+feat_5:"Service Worker ile çevrimdışı çalışabilen, mobil uyumlu ve ana ekrana eklenebilir uygulama.",
+feat_6_title:"Gizlilik Odaklı:",
+feat_6:"Hesap veya backend yok; tüm veriler tarayıcının localStorage alanında saklanır.",
+feat_7_title:"Sonuç Paylaşımı:",
+feat_7:"Oyun sonucunu tek dokunuşla paylaşma özelliği.",
+tech_title_text:"Teknolojiler & Mimari",
+pool_title_text:"Kelime Havuzu",
+col_len:"Uzunluk",
+col_guess:"Tahmin Havuzu",
+col_answer:"Cevap Havuzu",
+letter:"harf"
+},
+en:{
+back:"Back to Portfolio",
+title:"Kelimelik",
+subtitle:"Turkish Word Guessing Game",
+play:"Play Game",
+github:"View on GitHub",
+intro:"Kelimelik is a browser-based word guessing game where you try to find the secret Turkish word in 8 guesses. After each guess, letter accuracy is shown with color-coded counters; players can tap tiles to keep their own notes.",
+modes_title_text:"Game Modes",
+mode_1_title:"Daily Puzzle:",
+mode_1:"A fixed 5-letter puzzle every day; everyone plays the same word on the same calendar day, and it can only be completed once per day.",
+mode_2_title:"Classic:",
+mode_2:"Unlimited games with 4, 5, or 6 letters.",
+mode_3_title:"Multiplayer:",
+mode_3:"Planned for a future release.",
+features_title_text:"Core Features",
+feat_1_title:"Rich Word System:",
+feat_1:"A large guess dictionary paired with a tighter, more solvable answer pool.",
+feat_2_title:"Smart Hint:",
+feat_2:"A single per-game hint that never reveals the secret word outright.",
+feat_3_title:"TDK Integration:",
+feat_3:"Looks up word meanings via the TDK Turkish Dictionary API.",
+feat_4_title:"Statistics:",
+feat_4:"Overall, daily, and per-length stats, favorite words, and the last 100 games history.",
+feat_5_title:"PWA Support:",
+feat_5:"Works offline via Service Worker, mobile-friendly and installable to the home screen.",
+feat_6_title:"Privacy-First:",
+feat_6:"No account or backend; all data is stored in the browser's localStorage.",
+feat_7_title:"Result Sharing:",
+feat_7:"Share your game result with a single tap.",
+tech_title_text:"Technologies & Architecture",
+pool_title_text:"Word Pool",
+col_len:"Length",
+col_guess:"Guess Pool",
+col_answer:"Answer Pool",
+letter:"letters"
+}
+};
+var currentLang=localStorage.getItem('lang')||'tr';
+function applyLang(lang){currentLang=lang;localStorage.setItem('lang',lang);document.documentElement.lang=lang==='tr'?'tr':'en';document.title='Kelimelik - Bilgehan Akbaş';document.getElementById('langToggle').textContent=lang==='tr'?'TR':'EN';document.querySelectorAll('[data-lang]').forEach(function(el){var k=el.getAttribute('data-lang');if(LANG[lang]&&LANG[lang][k])el.textContent=LANG[lang][k];});}
+document.getElementById('langToggle').addEventListener('click',function(){applyLang(currentLang==='tr'?'en':'tr');});
+function applyTheme(isDark){
+if(isDark){
+document.body.classList.add('dark');
+document.getElementById('themeToggle').innerHTML='<i class="fas fa-sun"></i>';
+}else{
+document.body.classList.remove('dark');
+document.getElementById('themeToggle').innerHTML='<i class="fas fa-moon"></i>';
+}
+localStorage.setItem('theme',isDark?'dark':'light');
+}
+if(localStorage.getItem('theme')==='dark')applyTheme(true);
+document.getElementById('themeToggle').addEventListener('click',function(){applyTheme(!document.body.classList.contains('dark'));});
+applyLang(currentLang);
+</script>
+</body>
+</html>
