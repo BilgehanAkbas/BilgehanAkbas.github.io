@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Projeler — Bilgehan Akbaş</title>
+<meta content="Bilgehan Akbaş'ın yapay zekâ güvenliği, gömülü sistemler, görüntü işleme ve web projeleri." name="description"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/><link href="project.css" rel="stylesheet"/>
+<style>
+.archive{padding:58px 0 76px}.archive-head{text-align:center;max-width:760px;margin:0 auto 38px}.archive-head h1{font-size:clamp(2.6rem,6vw,4.8rem);margin:0 0 16px}.archive-head p{color:var(--muted);line-height:1.75}.archive-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.archive-card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:25px;text-decoration:none;display:flex;flex-direction:column;min-height:245px;transition:transform .2s ease,border-color .2s ease;box-shadow:0 8px 30px rgba(15,23,42,.035)}.archive-card:hover{transform:translateY(-3px);border-color:var(--primary)}.archive-card.featured{grid-column:span 2;background:linear-gradient(135deg,var(--surface),var(--primary-soft))}.archive-card i{font-size:1.4rem;color:var(--primary)}.archive-card h2{margin:20px 0 9px;font-size:1.5rem}.archive-card p{margin:0;color:var(--muted);line-height:1.65}.archive-card .chips{margin-top:auto;padding-top:20px}.flag{font-size:.73rem;font-weight:850;color:var(--primary);letter-spacing:.08em;text-transform:uppercase;margin-left:10px}@media(max-width:700px){.archive-grid{grid-template-columns:1fr}.archive-card.featured{grid-column:auto}}
+
+@media(max-width:700px){
+  .archive{padding:36px 0 calc(48px + var(--safe-bottom))}
+  .archive-head{margin-bottom:26px}
+  .archive-head h1{font-size:clamp(2.45rem,13vw,3.5rem);margin-bottom:12px}
+  .archive-head p{font-size:.94rem;line-height:1.62}
+  .archive-grid{gap:11px}
+  .archive-card{min-height:0;padding:20px;border-radius:18px}
+  .archive-card h2{font-size:1.28rem;margin:15px 0 7px}
+  .archive-card p{font-size:.91rem;line-height:1.58}
+  .archive-card .chips{padding-top:16px}
+}
+
+
+.archive-card i{transition:transform .22s ease}
+.archive-card:hover i{transform:translateY(-2px) scale(1.08)}
+.archive-card .chip{transition:border-color .2s ease,background .2s ease}
+.archive-card:hover .chip{border-color:color-mix(in srgb,var(--primary) 25%,var(--line))}
+@media(max-width:700px){.archive-card:hover i{transform:none}}
+
+
+.archive-actions .btn{
+  position:relative;
+  overflow:hidden;
+  transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s ease;
+}
+.archive-actions .btn::before{
+  content:"";position:absolute;inset:-2px;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.22) 45%,transparent 65%);
+  transform:translateX(-135%);transition:transform .5s ease;pointer-events:none;
+}
+.archive-actions .btn:hover::before{transform:translateX(135%)}
+.archive-actions .btn:hover{transform:translateY(-2px) scale(1.018)}
+.archive-actions .btn:active{transform:scale(.982)}
+.archive-actions .btn i{transition:transform .2s ease}
+.archive-actions .btn:hover i{transform:translateX(4px)}
+@media(max-width:700px){
+  .archive-actions .btn{width:100%;justify-content:center}
+  .archive-actions .btn:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .archive-actions .btn::before{display:none}
+  .archive-actions .btn:hover{transform:none}
+}
+
+
+.archive-head .eyebrow{
+  font-size:.88rem;
+  letter-spacing:.12em;
+}
+.archive-actions{
+  margin-top:24px;
+  padding-top:2px;
+}
+.archive-actions .btn{
+  min-height:46px;
+  padding:0 16px;
+  border-radius:13px;
+  gap:9px;
+  background:linear-gradient(135deg,#2563eb,#4f46e5);
+  color:#fff;
+  border-color:transparent;
+  box-shadow:0 9px 22px rgba(37,99,235,.18);
+}
+.archive-actions .btn:hover{
+  background:linear-gradient(135deg,#1d4ed8,#4338ca);
+  box-shadow:0 13px 28px rgba(37,99,235,.25);
+}
+.archive-content .chips{margin-bottom:2px}
+@media(max-width:700px){
+  .archive-head .eyebrow{font-size:.8rem}
+  .archive-actions{margin-top:20px}
+}
+
+/* V9 lighter archive CTA */
+.archive-actions .btn{
+  background:var(--surface)!important;
+  color:#6d28d9!important;
+  border:1px solid color-mix(in srgb,#7c3aed 34%,var(--line))!important;
+  box-shadow:0 7px 18px rgba(124,58,237,.08)!important;
+}
+.archive-actions .btn:hover{
+  background:color-mix(in srgb,#7c3aed 8%,var(--surface))!important;
+  color:#5b21b6!important;
+  border-color:color-mix(in srgb,#7c3aed 56%,var(--line))!important;
+  box-shadow:0 10px 24px rgba(124,58,237,.13)!important;
+}
+body.dark .archive-actions .btn{
+  background:color-mix(in srgb,#7c3aed 10%,var(--surface))!important;
+  color:#c4b5fd!important;
+}
+
+</style></head><body>
+<header class="topbar"><div class="shell topbar-inner"><a class="back" data-pi18n="back_portfolio" href="index.html#projeler"><i class="fa-solid fa-arrow-left"></i>Portfolyoya Dön</a><div class="actions-top"><button aria-label="Dil değiştir" class="icon-btn" id="projectLangToggle">TR</button><button aria-label="Tema değiştir" class="icon-btn" id="themeToggle"></button></div></div></header>
+<main class="archive"><div class="shell">
+<div class="archive-head reveal"><div class="eyebrow" data-pi18n="archive_kicker">Proje Arşivi</div><h1 data-pi18n="archive_title">Tüm Projeler</h1><p data-pi18n="archive_desc">Ana sayfada en güçlü iki çalışmayı öne çıkarıyorum. Burada ise tamamladığım, denediğim veya öğrenme amacıyla geliştirdiğim diğer işleri de görebilirsin.</p></div>
+<div class="archive-grid">
+<article class="archive-card featured reveal"><div class="archive-content"><div><i class="fa-solid fa-shield-halved"></i><span class="flag" data-pi18n="featured">Öne çıkan</span></div><h2 data-pi18n="llm_title">LLMBastion</h2><p data-pi18n="llm_desc">Prompt injection tespiti, hassas çıktı koruması, audit ve telemetry sağlayan LLM security gateway.</p><div class="chips"><span class="chip">FastAPI</span><span class="chip">LLM Security</span><span class="chip">ML</span></div></div><div class="archive-actions"><a class="btn btn-primary" href="llm-bastion.html"><span data-pi18n="view_project">Projeyi İncele</span><i class="fa-solid fa-arrow-right"></i></a></div></article>
+<article class="archive-card reveal"><div class="archive-content"><i class="fa-solid fa-microchip"></i><h2 data-pi18n="esp_title">ESP32 Akıllı Sensör Ağı</h2><p data-pi18n="esp_desc">Gömülü sistem, sensör işleme ve ağ haberleşmesi odağında uç cihaz çalışması.</p><div class="chips"><span class="chip">ESP32</span><span class="chip">C/C++</span><span class="chip">IoT</span></div></div><div class="archive-actions"><a class="btn btn-primary" href="esp32.html"><span data-pi18n="view_project">Projeyi İncele</span><i class="fa-solid fa-arrow-right"></i></a></div></article>
+<article class="archive-card reveal"><div class="archive-content"><i class="fa-solid fa-chair"></i><h2 data-pi18n="smart_title">Smart-Seat AI</h2><p data-pi18n="smart_desc">Kütüphane masa doluluk durumunu görüntü işleme ile sınıflandıran ekip projesi.</p><div class="chips"><span class="chip">YOLOv8</span><span class="chip">OpenCV</span></div></div><div class="archive-actions"><a class="btn btn-primary" href="smart-seat.html"><span data-pi18n="view_project">Projeyi İncele</span><i class="fa-solid fa-arrow-right"></i></a></div></article>
+<article class="archive-card reveal"><div class="archive-content"><i class="fa-solid fa-font"></i><h2 data-pi18n="kelimelik_title">Kelimelik</h2><p data-pi18n="kelimelik_desc">Günlük ve klasik modları bulunan Türkçe kelime tahmin oyunu.</p><div class="chips"><span class="chip">JavaScript</span><span class="chip">Web</span></div></div><div class="archive-actions"><a class="btn btn-primary" href="kelimelik.html"><span data-pi18n="view_project">Projeyi İncele</span><i class="fa-solid fa-arrow-right"></i></a></div></article>
+<article class="archive-card reveal"><div class="archive-content"><i class="fa-solid fa-chess-knight"></i><h2 data-pi18n="mobius_title">Möbius Şeridi Satranç</h2><p data-pi18n="mobius_desc">Satranç mantığını tek yüzeyli topoloji üzerinde deneyen görselleştirme prototipi.</p><div class="chips"><span class="chip">WebGL</span><span class="chip">Geometry</span></div></div><div class="archive-actions"><a class="btn btn-primary" href="mobius-chess.html"><span data-pi18n="view_project">Projeyi İncele</span><i class="fa-solid fa-arrow-right"></i></a></div></article>
+<article class="archive-card reveal"><div class="archive-content"><i class="fa-brands fa-java"></i><h2 data-pi18n="todo_title">ToDo Java Project</h2><p data-pi18n="todo_desc">OOP dersi kapsamında geliştirilen Spring Boot tabanlı görev ve not uygulaması.</p><div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span></div></div><div class="archive-actions"><a class="btn btn-primary" href="todo-project.html"><span data-pi18n="view_project">Projeyi İncele</span><i class="fa-solid fa-arrow-right"></i></a></div></article>
+</div></div></main>
+<footer class="footer"><div class="shell">© 2026 Bilgehan Akbaş</div></footer><script src="project.js"></script></body></html>
