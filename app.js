@@ -11,7 +11,7 @@ tr:{
  llm_desc:"LLM kullanan uygulamalar için geliştirdiğim güvenlik katmanı. Prompt injection denemelerini kontrol ediyor, modelden dönen hassas verileri tarıyor ve yapılan işlemleri kayıt altına alıyor.",
  esp_desc:"ESP32-WROOM-32U ile sensör verisini okuyup işleyen ve ağ üzerinden aktarabilen bir sistem üzerinde çalışıyorum. Donanım ve ağ tarafını birlikte öğrenmek için geliştirdiğim proje.",project_view:"Projeyi incele",all_projects:"Tüm projeleri görüntüle",
  career_kicker:"Kariyer & Eğitim",career_title:"Deneyim & Eğitim",exp_title:"Deneyim",exp_gazi_title:"Gazi Üniversitesi Yapay Zekâ Topluluğu",exp_vice:"Başkan Yardımcısı",exp_vice_date:"Ağu 2026 - Devam ediyor",exp_comm:"İletişim Komitesi Başkanı",exp_comm_officer:"İletişim Sorumlusu",exp_akbank:"Siber Güvenlik Analisti Eğitim Programı",exp_ai:"Yapay Zeka Uygulamaları Geliştirme",
- vol_title:"Gönüllülük",vol_active:"Aktif Gönüllü",edu_title:"Eğitim",edu_bs:"Lisans Derecesi, Bilgisayar Mühendisliği",edu_hs:"Lise Diploması",
+ vol_title:"Gönüllülük",vol_active:"Aktif Gönüllü",edu_title:"Eğitim",edu_bs:"Lisans Derecesi, Bilgisayar Mühendisliği",edu_hs:"Lise Diploması",gpa_info:"Genel Not Ortalaması: 3.30 / 4.00",
  certs_kicker:"Sertifikalar",certs_title:"Sertifikalar & Eğitimler",certs_desc:"Tamamladığım profesyonel eğitim programları ve yetkinlik belgeleri.",cert_python:"Python Programlama Dili",cert_ml:"Makine Öğrenmesi",cert_ml_python:"Python ile Makine Öğrenmesi Uygulamaları",cert_deep:"Derin Öğrenmeye Giriş",cert_security:"Siber Güvenliğe Giriş",
  contact_kicker:"İletişim",contact_title:"Bana Ulaşın",contact_desc:"Aşağıdaki formu kullanarak benimle doğrudan WhatsApp üzerinden iletişime geçebilirsiniz.",contact_name:"İsminiz",contact_phone:"Telefon Numaranız",contact_msg:"Mesajınız",contact_send:"Gönder",
  footer_rights:"Tüm hakları saklıdır.",online:"çevrimiçi",chat_cta:"Bana mesaj at",chat_placeholder:"Bir soru sor...",chat_greet:"Ben Bilgehan, hakkımda neler öğrenmek istersin?",
@@ -30,7 +30,7 @@ en:{
  llm_desc:"A Turkish-English LLM security gateway for prompt-injection detection and sensitive-output protection, combining RuleGuard, SemanticGuard v2, DataGuard v2, audit and rate limiting in an API-first architecture.",
  esp_desc:"An edge-device architecture around ESP32-WROOM-32U and external antenna support for reading, processing and transmitting sensor data over a network.",project_view:"View project",all_projects:"View all projects",
  career_kicker:"Career & Education",career_title:"Experience & Education",exp_title:"Experience",exp_gazi_title:"Gazi University AI Community",exp_vice:"Vice President",exp_vice_date:"Aug 2026 - Present",exp_comm:"Head of Communication Committee",exp_comm_officer:"Communication Officer",exp_akbank:"Cyber Security Analyst Training Program",exp_ai:"AI Application Development",
- vol_title:"Volunteering",vol_active:"Active Volunteer",edu_title:"Education",edu_bs:"Bachelor's Degree, Computer Engineering",edu_hs:"High School Diploma",
+ vol_title:"Volunteering",vol_active:"Active Volunteer",edu_title:"Education",edu_bs:"Bachelor's Degree, Computer Engineering",edu_hs:"High School Diploma",gpa_info:"GPA: 3.30 / 4.00",
  certs_kicker:"Certificates",certs_title:"Certificates & Training",certs_desc:"Professional training programs and competency certificates I have completed.",cert_python:"Python Programming Language",cert_ml:"Machine Learning",cert_ml_python:"Machine Learning Applications with Python",cert_deep:"Introduction to Deep Learning",cert_security:"Introduction to Cybersecurity",
  contact_kicker:"Contact",contact_title:"Contact Me",contact_desc:"You can reach me directly via WhatsApp using the form below.",contact_name:"Your Name",contact_phone:"Phone Number",contact_msg:"Your Message",contact_send:"Send",
  footer_rights:"All rights reserved.",online:"online",chat_cta:"Message me",chat_placeholder:"Ask a question...",chat_greet:"I'm Bilgehan. What would you like to know about me?",
@@ -213,6 +213,20 @@ document.querySelectorAll(".btn,.cert,.side-link,.archive-actions .btn").forEach
   ["pointerup","pointercancel","pointerleave"].forEach(ev=>el.addEventListener(ev,()=>el.classList.remove("pressed")));
 });
 
+/* GPA info: hover on desktop, tap toggle on touch/mobile. */
+const educationInfo=document.querySelector(".education-info");
+const educationInfoBtn=document.querySelector(".education-info-btn");
+educationInfoBtn?.addEventListener("click",(e)=>{
+  e.stopPropagation();
+  const open=educationInfo?.classList.toggle("open");
+  educationInfoBtn.setAttribute("aria-expanded",open?"true":"false");
+});
+document.addEventListener("click",(e)=>{
+  if(!educationInfo || educationInfo.contains(e.target)) return;
+  educationInfo.classList.remove("open");
+  educationInfoBtn?.setAttribute("aria-expanded","false");
+});
+
 applyLang(currentLang);typeLoop();startConversation();
 
 
@@ -246,4 +260,3 @@ applyLang(currentLang);typeLoop();startConversation();
   }
   requestAnimationFrame(frame);
 })();
-
